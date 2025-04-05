@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "EverythingExtension (Package)": {
+      "commandName": "MsixPackage",
+      "doNotLaunchApp": true
+    },
+    "EverythingExtension (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="everything_clipboard_failed" xml:space="preserve">
+    <value>🔴 Fail to set text in clipboard</value>
+  </data>
+  <data name="everything_clipboard_success" xml:space="preserve">
+    <value>🟢 Successfully copied to clipboard!</value>
+  </data>
+  <data name="everything_copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="everything_copy_path" xml:space="preserve">
+    <value>Copy path</value>
+  </data>
+  <data name="everything_delete_file" xml:space="preserve">
+    <value>Delete file</value>
+  </data>
+  <data name="everything_delete_file_tips" xml:space="preserve">
+    <value>Are you sure you want to delete "{0}" file?</value>
+  </data>
+  <data name="everything_delete_folder" xml:space="preserve">
+    <value>Delete folder</value>
+  </data>
+  <data name="everything_delete_folder_tips" xml:space="preserve">
+    <value>Are you sure you want to delete the "{0}" folder (including its files and subfolders)</value>
+  </data>
+  <data name="everything_delete_tips_caption" xml:space="preserve">
+    <value>Prompt</value>
+  </data>
+  <data name="everything_file_does_not_exit" xml:space="preserve">
+    <value>This file doesn't exist</value>
+  </data>
+  <data name="everything_file_is_file_not_folder" xml:space="preserve">
+    <value>This is a file, not a folder</value>
+  </data>
+  <data name="everything_folder_browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="everything_folder_is_empty" xml:space="preserve">
+    <value>This folder is empty</value>
+  </data>
+  <data name="everything_folder_open_failed" xml:space="preserve">
+    <value>Fail to open folder at</value>
+  </data>
+  <data name="everything_go_back" xml:space="preserve">
+    <value>GoBack</value>
+  </data>
+  <data name="everything_help_content" xml:space="preserve">
+    <value># CmdPal Everything Help Document
+&gt; CmdPal Everything is a command panel extension for Windows that allows you to quickly access files and folders in the Everything database through the command panel.
+
+## Everything Features (Please refer to the official website for details)
+- **Quick Access**: Through the command panel, you can quickly find and open files and folders without using the file explorer.
+- **Search**: Supports searching for file and folder names, paths, extensions, etc.
+- **Sort**: Supports sorting search results by name, size, modification date, etc.
+- **Filter**: Supports filtering file and folder extensions, types, etc.
+- **Preview**: Supports previewing the contents of files, including text files, images, videos, etc.
+- **Run**: Supports running files as administrator.
+- **Copy Path**: Supports copying the path of files and folders.
+- **More Features**: Supports more advanced features, such as creating shortcuts, renaming files and folders, etc.
+
+## How to use CmdPal Everything
+1. Type `Everything` (or select `Everything search`) to open the Everything command panel.
+2. Type `search keyword` in the command panel to search.
+3. In the search results, select the file or folder you want to open and press Enter to open it.
+4. You can also use other shortcuts and functions (Ctrl+K) to operate the search results.
+5. You can use built-in `macros` (macro search needs to be enabled in settings) for targeted searches, such as: `doc:, audio:, zip:, pic:, video:, web:, exe:`, etc.
+
+## `Macros` search instructions (supported file types)
+- `doc:`: Search for document files, such as .doc, .docx, .pdf, etc.
+&gt; c,chm,cpp,doc,dot,h,htm,html,mht,mhtml,nfo,pdf,pps,ppt,rtf,txt,vsd,wpd,wps,wri,xls,xml,txt,docx,htm,html,pdf,c,cpp,h,xls,odp,odt,ods,pptx,xlsx,csv,docx,ppsx,java,hpp,ini,dotx,xlsb
+
+- `audio:`: Search for audio files, such as .mp3, .wav, .flac, etc.
+&gt; aac,ac3,aif,aifc,aiff,au,cda,dts,fla,flac,gym,it,m1a,m2a,m4a,midi,mka,mod,mp2,mp3,mpa,ogg,ra,spc,rmi,snd,umx,vgm,vgz,voc,wav,wma,xm
+
+- `zip:`: Search for compressed files, such as .zip, .rar, .7z, etc.
+&gt; ace,arj,bz2,cab,gz,gzip,r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,rar,tar,7z,zip
+
+- `pic:`: Search for image files, such as .jpg, .png, .gif, etc.
+&gt; ani,bmp,gif,ico,jpe,jpeg,jpg,pcx,png,psd,tga,tif,tiff,wmf,wbmp,icl,jp2,mpng,raw,nef,wdp,hdp
+
+- `video:`: Search for video files, such as .mp4, .avi, .mkv, etc.
+&gt; 3g2,3gp,3gp2,3gpp,amr,asf,avi,bik,d2v,dat,divx,drc,dsa,dsm,dss,dsv,flc,fli,flic,flv,ifo,ivf,m1v,m2v,m4b,m4p,m4v,mkv,mp2v,mp4,mpe,mpeg,mpg,mpv2,mov,ogm,pss,pva,qt,ram,ratdvd,rm,rmm,roq,rpm,smk,swf,tp,tpr,ts,vob,vp6,wm,wmp,wmv,rmvb
+
+- `web:`: Search for web page files, such as .html, .htm, .php, etc.
+&gt; html,htm,mht,php,css,sql,js
+
+- `exe:`: Search for executable files, such as .exe, .msi, .bat, etc.
+&gt; exe,cmd,msi,msix
+
+## Search parameters
+- Regular search
+&gt; Enter keywords to search
+
+- Macro search
+&gt; Macro tag: search keyword
+
+For example:
+
+```
+pic:1212
+```
+
+- Customize the number of search results (the maximum value is 100, and more than 100 will cause crash)
+&gt; Used to customize the returned search results; search rules: search keyword count: number;
+
+For example:
+```
+hello count:10
+```
+
+- Enable regular search
+Use `@` to start with regular search. It should be noted that when regular search is enabled, `macro` search cannot be enabled
+
+## Others
+
+- Problem feedback contact information
+- QQ: 86477385
+
+- Related links:
+- [Everything official website](https://www.voidtools.com)
+- [PowerToys](https://github.com/microsoft/PowerToys)
+- [CmdPal](https://github.com/microsoft/PowerToys/tree/main/src/modules/cmdpal)</value>
+  </data>
+  <data name="everything_help_title" xml:space="preserve">
+    <value>Help document</value>
+  </data>
+  <data name="everything_is_not_running" xml:space="preserve">
+    <value>Everything is not running</value>
+  </data>
+  <data name="everything_macro_enabled" xml:space="preserve">
+    <value>Enable macro query</value>
+  </data>
+  <data name="everything_macro_enabled_description" xml:space="preserve">
+    <value>Available doc:,audio:,zip:,pic:,video:,web: and exe: and so filters macro search files</value>
+  </data>
+  <data name="everything_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="everything_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="everything_open_containing_folder" xml:space="preserve">
+    <value>Open containing folder</value>
+  </data>
+  <data name="everything_open_folder" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="everything_open_in_console" xml:space="preserve">
+    <value>Open path in console</value>
+  </data>
+  <data name="everything_path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="everything_plugin_description" xml:space="preserve">
+    <value>Search for files or folders using Everything</value>
+  </data>
+  <data name="everything_plugin_name" xml:space="preserve">
+    <value>Everything Search</value>
+  </data>
+  <data name="everything_query_error" xml:space="preserve">
+    <value>Everything query error</value>
+  </data>
+  <data name="everything_run_as_administrator" xml:space="preserve">
+    <value>Run as administrator</value>
+  </data>
+  <data name="everything_run_as_user" xml:space="preserve">
+    <value>Run as different user</value>
+  </data>
+  <data name="everything_subtitle_header" xml:space="preserve">
+    <value>Everything</value>
+  </data>
+  <data name="everything_text_preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="everything_text_preview_not_supported" xml:space="preserve">
+    <value>The current file does not support preview！</value>
+  </data>
+  <data name="everything_welcome" xml:space="preserve">
+    <value>Welcome to use Everything search</value>
+  </data>
+  <data name="everything_welcome_subtitle" xml:space="preserve">
+    <value>Type the 'Enter' key for help information</value>
+  </data>
+</root>

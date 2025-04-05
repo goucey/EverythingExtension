@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="everything_clipboard_failed" xml:space="preserve">
+    <value>🔴 无法在剪贴板中设置文本</value>
+  </data>
+  <data name="everything_clipboard_success" xml:space="preserve">
+    <value>🟢 已成功复制到剪贴板！</value>
+  </data>
+  <data name="everything_copied" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="everything_copy_path" xml:space="preserve">
+    <value>复制路径</value>
+  </data>
+  <data name="everything_delete_file" xml:space="preserve">
+    <value>删除文件</value>
+  </data>
+  <data name="everything_delete_file_tips" xml:space="preserve">
+    <value>你确定要删除 “{0}” 文件吗</value>
+  </data>
+  <data name="everything_delete_folder" xml:space="preserve">
+    <value>删除文件夹</value>
+  </data>
+  <data name="everything_delete_folder_tips" xml:space="preserve">
+    <value>您确定要删除 “{0}” 文件夹（包含其中的文件和子文件夹）吗？</value>
+  </data>
+  <data name="everything_delete_tips_caption" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="everything_file_does_not_exit" xml:space="preserve">
+    <value>此文件不存在</value>
+  </data>
+  <data name="everything_file_is_file_not_folder" xml:space="preserve">
+    <value>这是一个文件，不是文件夹</value>
+  </data>
+  <data name="everything_folder_browse" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="everything_folder_is_empty" xml:space="preserve">
+    <value>此文件夹为空</value>
+  </data>
+  <data name="everything_folder_open_failed" xml:space="preserve">
+    <value>无法打开文件夹</value>
+  </data>
+  <data name="everything_go_back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="everything_help_content" xml:space="preserve">
+    <value># CmdPal Everything 帮助文档
+&gt; CmdPal Everything 是一个用于 Windows 的命令面板扩展，它允许您通过命令面板快速访问 Everything 数据库中的文件和文件夹。
+
+## Everything 功能（具体请参考[官网](https://www.voidtools.com/zh-cn/)文案）
+- **快速访问**：通过命令面板，您可以快速找到并打开文件和文件夹，无需使用文件资源管理器。
+- **搜索**：支持搜索文件和文件夹的名称、路径、扩展名等。
+- **排序**：支持按名称、大小、修改日期等对搜索结果进行排序。
+- **过滤**：支持过滤文件和文件夹的扩展名、类型等。
+- **预览**：支持预览文件的内容，包括文本文件、图片、视频等。
+- **运行**：支持以管理员身份运行文件。
+- **复制路径**：支持复制文件和文件夹的路径。
+- **更多功能**：支持更多高级功能，如创建快捷方式、重命名文件和文件夹等。
+
+## CmdPal Everything 使用方法
+1. 输入 `Everything`（或选择 `Everything 搜索`）以打开 Everything 命令面板。
+2. 在命令面板中输入 `搜索关键字` 进行搜索。
+3. 在搜索结果中，选择要打开的文件或文件夹，按 Enter 键进行打开。
+4. 您还可以使用其他快捷键和功能(Ctrl+K)来操作搜索结果。
+5. 搜索中可以使用内置 `宏` （设置中需要开启宏搜索）具有针对性的搜索，例如：`doc:、audio:、zip:、pic:、video:、web:、exe:`等。
+
+## `宏` 搜索说明（支持的文件类型）
+- `doc:`：搜索文档文件，如 .doc、.docx、.pdf 等。
+  &gt; c,chm,cpp,doc,dot,h,htm,html,mht,mhtml,nfo,pdf,pps,ppt,rtf,txt,vsd,wpd,wps,wri,xls,xml,txt,docx,htm,html,pdf,c,cpp,h,xls,odp,odt,ods,pptx,xlsx,csv,docx,ppsx,java,hpp,ini,dotx,xlsb
+
+- `audio:`：搜索音频文件，如 .mp3、.wav、.flac 等。
+  &gt; aac,ac3,aif,aifc,aiff,au,cda,dts,fla,flac,gym,it,m1a,m2a,m4a,midi,mka,mod,mp2,mp3,mpa,ogg,ra,spc,rmi,snd,umx,vgm,vgz,voc,wav,wma,xm
+
+- `zip:`：搜索压缩文件，如 .zip、.rar、.7z 等。
+  &gt; ace,arj,bz2,cab,gz,gzip,r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,rar,tar,7z，zip
+
+- `pic:`：搜索图片文件，如 .jpg、.png、.gif 等。
+  &gt; ani,bmp,gif,ico,jpe,jpeg,jpg,pcx,png,psd,tga,tif,tiff,wmf,wbmp,icl,jp2,mpng,raw,nef,wdp,hdp
+
+- `video:`：搜索视频文件，如 .mp4、.avi、.mkv 等。
+  &gt; 3g2,3gp,3gp2,3gpp,amr,asf,avi,bik,d2v,dat,divx,drc,dsa,dsm,dss,dsv,flc,fli,flic,flv,ifo,ivf,m1v,m2v,m4b,m4p,m4v,mkv,mp2v,mp4,mpe,mpeg,mpg,mpv2,mov,ogm,pss,pva,qt,ram,ratdvd,rm,rmm,roq,rpm,smk,swf,tp,tpr,ts,vob,vp6,wm,wmp,wmv,rmvb
+
+- `web:`：搜索网页文件，如 .html、.htm、.php 等。
+  &gt; html,htm,mht,php,css,sql,js
+
+- `exe:`：搜索可执行文件，如 .exe、.msi、.bat 等。
+  &gt; exe,cmd,msi,msix
+
+## 搜索参数
+- 常规搜索
+  &gt; 输入关键词即可搜索
+
+- 宏搜索
+  &gt; 宏标记:搜索关键词
+
+  例如:
+
+  ```
+  pic:1212
+  ```
+
+- 自定义搜索结果数量（数量最大取值100，超过100会导致崩毁）
+  &gt; 用于自定义返回搜索结果；搜索规则：搜索关键词 count:数量；
+
+  例如：
+  ```
+  hello count:10
+  ```
+
+- 开启正则搜索
+   用 `@` 开头则启用正则搜索，需要注意的是，启用正则搜索时，无法启用`宏`搜索
+
+## 其他
+
+- 问题反馈联系方式
+  - QQ：86477385
+
+- 相关链接：
+  - [Everything 官网](https://www.voidtools.com)
+  - [PowerToys](https://github.com/microsoft/PowerToys)
+  - [CmdPal](https://github.com/microsoft/PowerToys/tree/main/src/modules/cmdpal)</value>
+  </data>
+  <data name="everything_help_title" xml:space="preserve">
+    <value>帮助文档</value>
+  </data>
+  <data name="everything_is_not_running" xml:space="preserve">
+    <value>Everything 未运行</value>
+  </data>
+  <data name="everything_macro_enabled" xml:space="preserve">
+    <value>启用宏查询</value>
+  </data>
+  <data name="everything_macro_enabled_description" xml:space="preserve">
+    <value>可用doc:、audio:、zip:、pic:、video:、web: 和 exe:等过滤器搜索文件</value>
+  </data>
+  <data name="everything_name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="everything_open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="everything_open_containing_folder" xml:space="preserve">
+    <value>打开所在文件夹</value>
+  </data>
+  <data name="everything_open_folder" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+  <data name="everything_open_in_console" xml:space="preserve">
+    <value>在控制台中打开路径</value>
+  </data>
+  <data name="everything_path" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="everything_plugin_description" xml:space="preserve">
+    <value>使用 Everything 搜索文件或文件夹</value>
+  </data>
+  <data name="everything_plugin_name" xml:space="preserve">
+    <value>Everything 搜索</value>
+  </data>
+  <data name="everything_query_error" xml:space="preserve">
+    <value>Everything 查询错误</value>
+  </data>
+  <data name="everything_run_as_administrator" xml:space="preserve">
+    <value>以管理员身份运行</value>
+  </data>
+  <data name="everything_run_as_user" xml:space="preserve">
+    <value>以其他用户身份运行</value>
+  </data>
+  <data name="everything_subtitle_header" xml:space="preserve">
+    <value>Everything</value>
+  </data>
+  <data name="everything_text_preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="everything_text_preview_not_supported" xml:space="preserve">
+    <value>当前文件不支持预览！</value>
+  </data>
+  <data name="everything_welcome" xml:space="preserve">
+    <value>欢迎使用 Everything 搜索</value>
+  </data>
+  <data name="everything_welcome_subtitle" xml:space="preserve">
+    <value>键入 ‘Enter’ 键，以获取帮助信息</value>
+  </data>
+</root>
