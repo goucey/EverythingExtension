@@ -149,27 +149,27 @@ namespace EverythingExtension.Pages
                 .Select(s => new SearchResult(s))
                 .Select(i => new EverythingListItem(i,true))];
 
-            _ = Task.Run(() =>
-            {
-                foreach (var item in _directoryContents)
-                {
-                    IconInfo? icon = null;
-                    try
-                    {
-                        var stream = ThumbnailHelper.GetThumbnail(item.Item.FullPath).Result;
-                        if (stream != null)
-                        {
-                            var data = new IconData(RandomAccessStreamReference.CreateFromStream(stream));
-                            icon = new IconInfo(data, data);
-                        }
-                    }
-                    catch
-                    {
-                    }
+            //_ = Task.Run(() =>
+            //{
+            //    foreach (var item in _directoryContents)
+            //    {
+            //        IconInfo? icon = null;
+            //        try
+            //        {
+            //            var stream = ThumbnailHelper.GetThumbnail(item.Item.FullPath).Result;
+            //            if (stream != null)
+            //            {
+            //                var data = new IconData(RandomAccessStreamReference.CreateFromStream(stream));
+            //                icon = new IconInfo(data, data);
+            //            }
+            //        }
+            //        catch
+            //        {
+            //        }
 
-                    item.Icon = icon;
-                }
-            });
+            //        item.Icon = icon;
+            //    }
+            //});
 
             IsLoading = false;
 

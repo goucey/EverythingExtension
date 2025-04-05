@@ -41,7 +41,7 @@ namespace EverythingExtension.Settings
 
             _details = new Lazy<Details?>(() => BuildDetails());
 
-            _icon = new Lazy<IconInfo>(() =>
+            _icon = new Lazy<IconInfo?>(() =>
             {
                 var t = FetchIcon();
                 t.Wait();
@@ -57,7 +57,7 @@ namespace EverythingExtension.Settings
 
         private readonly SearchResult _search;
         private readonly Lazy<Details?> _details;
-        private readonly Lazy<IconInfo> _icon;
+        private readonly Lazy<IconInfo?> _icon;
 
         #endregion Fields
 
@@ -101,27 +101,21 @@ namespace EverythingExtension.Settings
             //return details;
         }
 
-        private async Task<IconInfo> FetchIcon()
+        private async Task<IconInfo?> FetchIcon()
         {
             try
             {
-                if (_search.Type == ResultType.File)
+                var stream = await ThumbnailHelper.GetThumbnail(_search.FullPath);
+                if (stream != null)
                 {
-                    var stream = await ThumbnailHelper.GetThumbnail(_search.FullPath);
-                    if (stream != null)
-                    {
-                        var data = new IconData(RandomAccessStreamReference.CreateFromStream(stream));
-                        return new IconInfo(data, data);
-                    }
+                    var data = new IconData(RandomAccessStreamReference.CreateFromStream(stream));
+                    return new IconInfo(data, data);
                 }
-
-                if (_search.Type == ResultType.Folder)
-                    return IconHelpers.FromRelativePath("Assets\\Images\\folder.png");
             }
             catch
             {
             }
-            return new IconInfo($"{_search.FullPath},1");
+            return default; //new IconInfo($"{_search.FullPath},1");
         }
 
         #endregion Private Methods

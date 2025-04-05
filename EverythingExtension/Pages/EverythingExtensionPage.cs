@@ -171,7 +171,24 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         SearchResult? result;
         while (!_everythingSearch.SearchResults.IsEmpty && _everythingSearch.SearchResults.TryDequeue(out result) && ++index <= limit)
         {
+            //IconInfo icon = null;
+            //try
+            //{
+            //    var stream = ThumbnailHelper.GetThumbnail(result.FullPath).Result;
+            //    if (stream != null)
+            //    {
+            //        var data = new IconData(RandomAccessStreamReference.CreateFromStream(stream));
+            //        icon = new IconInfo(data, data);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.Write(ex);
+            //    //Logger.LogError("Failed to get the icon.", ex);
+            //}
             var _item = new EverythingListItem(result);
+
+            //_item.Icon = icon;
 
             result.Deleted = () => DeletedListItemHandler(_item);
 
