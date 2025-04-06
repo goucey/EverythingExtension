@@ -153,7 +153,8 @@ namespace EverythingExtension.Search
             int majorVersion = Everything_GetMajorVersion();
             int minorVersion = Everything_GetMinorVersion();
             int revision = Everything_GetRevision();
-            return new Version(majorVersion, minorVersion, revision);
+            int build = Everything_GetBuildNumber();
+            return new Version(majorVersion, minorVersion, revision, build);
         }
 
         private void SetRequestFlags()
