@@ -87,6 +87,16 @@ namespace EverythingExtension.Search
         /// </summary>
         public int SerialNumber { get; set; }
 
+        /// <summary>
+        /// 文件大小
+        /// </summary>
+        public long? Size { get; set; }
+
+        /// <summary>
+        /// 文件或文件夹父级目录
+        /// </summary>
+        public string ParentPath { get; set; }
+
         public bool IsPreviewable => IsTextPreviewable || IsImagePreviewable;
 
         /// <summary>
@@ -159,6 +169,29 @@ namespace EverythingExtension.Search
         /// <returns> </returns>
         internal string? GetDirectoryPath()
             => Type == ResultType.File ? Path.GetDirectoryName(FullPath) : FullPath;
+
+        internal string? GetFileSizeDisplay()
+        {
+            if (Size == null)
+                return default;
+
+            if (Size < 1024)
+                return $"{Size} B";
+            else if (Size < 1024 * 1024)
+            {
+                return $"{(Size / 1024F):F1} KB";
+            }
+            else if (Size < 1024 * 1024 * 1024)
+            {
+                return $"{(Size / (1024F * 1024F)):F1} MB";
+            }
+            else if (Size < (1024L * 1024L * 1024L * 1024L))
+            {
+                return $"{(Size / (1024F * 1024F * 1024F)):F1} GB";
+            }
+            else
+                return default;
+        }
 
         #endregion Internal Methods
 

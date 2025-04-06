@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using Windows.Foundation.Metadata;
+
 namespace EverythingExtension.SDK
 {
     internal sealed class EverythingSDK
@@ -52,41 +54,13 @@ namespace EverythingExtension.SDK
 
         #endregion Enums
 
-        #region Public Methods
-
-        [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        public static extern IntPtr Everything_GetResultHighlightedPathW(int nIndex);
-
-        [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        public static extern IntPtr Everything_GetResultHighlightedFileNameW(int nIndex);
-
-        [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        public static extern IntPtr Everything_GetResultHighlightedFullPathAndFileNameW(int nIndex);
-
-        [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        public static extern IntPtr Everything_GetResultExtensionW(int nIndex);
-
-        [DllImport(DllPath)]
-        public static extern int Everything_GetMajorVersion();
-
-        [DllImport(DllPath)]
-        public static extern int Everything_GetMinorVersion();
-
-        [DllImport(DllPath)]
-        public static extern int Everything_GetRevision();
-
-        [DllImport(DllPath)]
-        public static extern void Everything_SetRequestFlags(RequestFlag flag);
-
-        #endregion Public Methods
-
         #region Internal Methods
 
         [DllImport(DllPath, CharSet = CharSet.Unicode)]
         internal static extern IntPtr Everything_GetResultFileNameW(int nIndex);
 
         [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        internal static extern int Everything_SetSearchW(string lpSearchString);
+        internal static extern void Everything_SetSearchW(string lpSearchString);
 
         [DllImport(DllPath)]
         internal static extern void Everything_SetMatchPath(bool bEnable);
@@ -116,10 +90,12 @@ namespace EverythingExtension.SDK
         internal static extern bool Everything_GetMatchWholeWord();
 
         [DllImport(DllPath)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool Everything_GetRegex();
 
         [DllImport(DllPath)]
-        internal static extern uint Everything_GetMax();
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool Everything_GetMax();
 
         [DllImport(DllPath)]
         internal static extern uint Everything_GetOffset();
@@ -163,12 +139,71 @@ namespace EverythingExtension.SDK
         [DllImport(DllPath)]
         internal static extern bool Everything_IsFileResult(int nIndex);
 
-        [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        internal static extern void Everything_GetResultFullPathNameW(int nIndex, string lpString, int nMaxCount);
-
         [DllImport(DllPath)]
         internal static extern void Everything_Reset();
 
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern IntPtr Everything_GetResultPathW(int idx);
+
+        #region 1.0.0
+
+        [MinVersion("1.0.0")]
+        [DllImport(DllPath)]
+        internal static extern int Everything_GetMajorVersion();
+
+        [MinVersion("1.0.0")]
+        [DllImport(DllPath)]
+        internal static extern int Everything_GetMinorVersion();
+
+        [MinVersion("1.0.0")]
+        [DllImport(DllPath)]
+        internal static extern int Everything_GetRevision();
+
+        #endregion 1.0.0
+
+        #region 1.4.1
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath)]
+        internal static extern void Everything_SetRequestFlags(RequestFlag flag);
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern IntPtr Everything_GetResultHighlightedPathW(int nIndex);
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern IntPtr Everything_GetResultHighlightedFileNameW(int nIndex);
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern IntPtr Everything_GetResultHighlightedFullPathAndFileNameW(int nIndex);
+
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern IntPtr Everything_GetResultExtensionW(int nIndex);
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern bool Everything_GetResultSize(int nIndex, ref LARGE_INTEGER lpSize);
+
+        [MinVersion("1.4.1")]
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern uint Everything_GetResultFullPathNameW(int nIndex, char[] lpString, int nMaxCount);
+
+        #endregion 1.4.1
+
         #endregion Internal Methods
+
+        #region Structs
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct LARGE_INTEGER
+        {
+            public int LowPart;
+            public int HighPart;
+            public long QuadPart;
+        }
+
+        #endregion Structs
     }
 }

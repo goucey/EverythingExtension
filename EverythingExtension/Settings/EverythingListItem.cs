@@ -9,6 +9,7 @@ using Microsoft.Win32;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -30,7 +31,9 @@ namespace EverythingExtension.Settings
             //new DirectoryExplorePage(search.FullPath)
             Title = search.FileName;
             Subtitle = $"{search.FullPath}";
-            //Tags = [new Tag("🔍")];
+
+            if (search.Size.HasValue)
+                Tags = [new Tag(search.GetFileSizeDisplay()?? string.Empty)];
 
             if (search.Type == ResultType.Folder)
                 Command = isFirstlevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);

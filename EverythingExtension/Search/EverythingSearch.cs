@@ -9,9 +9,11 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,15 +23,27 @@ using static EverythingExtension.SDK.EverythingSDK;
 
 namespace EverythingExtension.Search
 {
-    internal sealed class EverythingSearch(EverythingSettings settings)
+    internal sealed class EverythingSearch
     {
         #region Fields
 
+        private readonly Version _version;
         private readonly Lock _lockObject = new();
+        private readonly EverythingSettings _settings;
         private readonly ConcurrentQueue<SearchResult> _searchResults = new();
         private CancellationTokenSource? cancellationToken;
 
         #endregion Fields
+
+        #region Public Constructors
+
+        public EverythingSearch(EverythingSettings settings)
+        {
+            _settings = settings;
+            _version = GetVersion();
+        }
+
+        #endregion Public Constructors
 
         #region Properties
 
@@ -101,6 +115,8 @@ namespace EverythingExtension.Search
             }
         }
 
+        public Version Version => _version;
+
         #endregion Properties
 
         public ConcurrentQueue<SearchResult> SearchResults => _searchResults;
@@ -132,6 +148,27 @@ namespace EverythingExtension.Search
             }
         }
 
+        private static Version GetVersion()
+        {
+            int majorVersion = Everything_GetMajorVersion();
+            int minorVersion = Everything_GetMinorVersion();
+            int revision = Everything_GetRevision();
+            return new Version(majorVersion, minorVersion, revision);
+        }
+
+        private void SetRequestFlags()
+        {
+            MethodInfo? methodInfo = typeof(EverythingSDK).GetMethod("Everything_SetRequestFlags", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+
+            if (!methodInfo.IsVersionAvailable(Version))
+                return;
+
+            if (methodInfo == null)
+                return;
+
+            methodInfo.Invoke(null, [RequestFlag.FileName | RequestFlag.Path | RequestFlag.FullPathAndFileName | RequestFlag.HighlightedFileName | RequestFlag.HighlightedFullPathAndFileName | RequestFlag.Size | RequestFlag.Extension]);
+        }
+
         private void ExecuteInternal(CancellationToken token)
         {
             lock (_lockObject)
@@ -142,12 +179,12 @@ namespace EverythingExtension.Search
                     throw new ArgumentNullException(nameof(SearchText));
 #pragma warning restore CA2208 // 正确实例化参数异常
                 }
-                string searchKeyword = SearchKeywordFormat(settings, SearchText, out int maxCount, settings.MacroEnabled);
+                string searchKeyword = SearchKeywordFormat(_settings, SearchText, out int maxCount, _settings.MacroEnabled);
 
                 if (maxCount < 0)
                 {
 #pragma warning disable CA2208 // 正确实例化参数异常
-                    throw new ArgumentOutOfRangeException(nameof(settings.MaxSearchCount));
+                    throw new ArgumentOutOfRangeException(nameof(_settings.MaxSearchCount));
 #pragma warning restore CA2208 // 正确实例化参数异常
                 }
                 //#if DEBUG
@@ -163,7 +200,7 @@ namespace EverythingExtension.Search
                 // //keyWord = keyWord.Substring(1); } else {
                 // EverythingApiDllImport.Everything_SetRegex(false); } if
                 // (token.IsCancellationRequested) { return results; }
-                EverythingSDK.Everything_SetRequestFlags(RequestFlag.HighlightedFileName | RequestFlag.HighlightedFullPathAndFileName);
+                SetRequestFlags();
                 if (token.IsCancellationRequested)
                 {
                     return;
@@ -181,7 +218,7 @@ namespace EverythingExtension.Search
                     return;
                 }
 
-                _ = EverythingSDK.Everything_SetSearchW(searchKeyword);
+                EverythingSDK.Everything_SetSearchW(searchKeyword);
 
                 if (token.IsCancellationRequested)
                 {
@@ -208,37 +245,9 @@ namespace EverythingExtension.Search
                         return;
                     }
 
-                    ResultType resultType = GetSearchResultType(idx);
-                    string? fileNameHighted = Marshal.PtrToStringUni(EverythingSDK.Everything_GetResultHighlightedFileNameW(idx));
-                    string? fullPathHighted = Marshal.PtrToStringUni(EverythingSDK.Everything_GetResultHighlightedFullPathAndFileNameW(idx));
-                    string? extension = Marshal.PtrToStringUni(EverythingSDK.Everything_GetResultExtensionW(idx));
-                    if (fileNameHighted == null | fullPathHighted == null)
-                    {
-                        CheckAndThrowExceptionOnError();
-                    }
-
-                    if (token.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    ConvertHighlightFormat(fileNameHighted, out _, out string fileName);
-                    if (token.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    ConvertHighlightFormat(fullPathHighted, out _, out string fullPath);
-
-                    if (token.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    extension ??= (resultType == ResultType.File ? Path.GetExtension(fileName) : null);
-                    var result = new SearchResult(fileName, fullPath, resultType, _searchResults.Count + 1, extension);
-
-                    _searchResults.Enqueue(result);
+                    SearchItemContext context = new SearchItemContext(idx, Version);
+                    if (context.Result != null)
+                        _searchResults.Enqueue(context.Result(_searchResults.Count + 1));
                 }
             }
         }
@@ -342,18 +351,6 @@ namespace EverythingExtension.Search
 
             var macro = settings.Macros.FirstOrDefault(m => m.Prefix.Equals(separator, StringComparison.OrdinalIgnoreCase));
             return macro == null ? keyword : $"{macro} {string.Join(":", keywordItems?.Skip(1) ?? [])}";
-        }
-
-        private static ResultType GetSearchResultType(int idx)
-        {
-            if (EverythingSDK.Everything_IsFolderResult(idx))
-                return ResultType.Folder;
-            else if (EverythingSDK.Everything_IsFileResult(idx))
-                return ResultType.File;
-            else if (EverythingSDK.Everything_IsVolumeResult(idx))
-                return ResultType.Volume;
-            else
-                return ResultType.None;
         }
 
         #endregion Private Methods
