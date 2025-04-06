@@ -29,27 +29,30 @@ namespace EverythingExtension.Search
 
         #region Public Constructors
 
-        public SearchResult(string fileName, string fullPath, ResultType type, string? extension = null)
+        public SearchResult(string fileName, string fullPath, ResultType type, int serialNumber, string? extension = null)
         {
             FileName = fileName;
             FullPath = fullPath;
             Type = type;
             Extension = extension;
+            SerialNumber = serialNumber;
         }
 
-        public SearchResult(string fileName, string fullPath)
+        public SearchResult(string fileName, string fullPath, int serialNumber)
         {
             FileName = fileName;
             FullPath = fullPath;
+            SerialNumber = serialNumber;
             Type = IsDirectory() ? ResultType.Folder : ResultType.File;
             if (Type == ResultType.File && !string.IsNullOrWhiteSpace(fileName))
                 Extension = Path.GetExtension(fileName);
         }
 
-        public SearchResult(string fullPath)
+        public SearchResult(string fullPath, int serialNumber)
         {
             FileName = Path.GetFileName(fullPath);
             FullPath = fullPath;
+            SerialNumber = serialNumber;
             Type = IsDirectory() ? ResultType.Folder : ResultType.File;
             if (Type == ResultType.File && !string.IsNullOrWhiteSpace(FileName))
                 Extension = Path.GetExtension(FileName);
@@ -78,6 +81,11 @@ namespace EverythingExtension.Search
         /// 扩展名
         /// </summary>
         public string? Extension { get; set; }
+
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int SerialNumber { get; set; }
 
         public bool IsPreviewable => IsTextPreviewable || IsImagePreviewable;
 

@@ -7,6 +7,7 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,18 @@ namespace EverythingExtension.Settings
     {
         #region Fields
 
+        public static readonly int DefaultMaxSearchCount = 200;
+
+        #endregion Fields
+
+
+
+        #region Fields
+
         private static readonly string _namespace = "everything";
 
         private readonly ToggleSetting _macroEnabled = new(Namespaced(nameof(MacroEnabled)), Resources.everything_macro_enabled, Resources.everything_macro_enabled_description, true);
+        private readonly TextSetting _maxSearchCount = new(Namespaced(nameof(MaxSearchCount)), Resources.everything_max_search_result_limit, Resources.everything_max_search_result_limit_description, DefaultMaxSearchCount.ToString(CultureInfo.InvariantCulture));
 
         #endregion Fields
 
@@ -38,6 +48,7 @@ namespace EverythingExtension.Settings
             LoadSettings();
 
             Settings.Add(_macroEnabled);
+            Settings.Add(_maxSearchCount);
 
             Settings.SettingsChanged += (s, a) => SaveSettings();
         }
@@ -57,7 +68,15 @@ namespace EverythingExtension.Settings
             new( "exe", "exe,cmd,msi,msix"),
         ];
 
-        internal int MaxSearchCount { get; set; } = 100;
+        internal int MaxSearchCount
+        {
+            get => int.TryParse(_maxSearchCount.Value, out int maxSearchCount) ? maxSearchCount : DefaultMaxSearchCount;
+            set
+            {
+                _maxSearchCount.Value = value.ToString(CultureInfo.InvariantCulture);
+                SaveSettings();
+            }
+        }
 
         internal bool MacroEnabled => _macroEnabled.Value;
 

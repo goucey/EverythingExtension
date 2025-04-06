@@ -96,7 +96,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
             EmptyContent = null;
 
         if (_settings.MaxSearchCount <= 0)
-            _settings.MaxSearchCount = 100;
+            _settings.MaxSearchCount = EverythingSettings.DefaultMaxSearchCount;
 
         try
         {

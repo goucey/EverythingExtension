@@ -30,7 +30,7 @@ namespace EverythingExtension.Settings
             //new DirectoryExplorePage(search.FullPath)
             Title = search.FileName;
             Subtitle = $"{search.FullPath}";
-            Tags = [new Tag("🔍")];
+            //Tags = [new Tag("🔍")];
 
             if (search.Type == ResultType.Folder)
                 Command = isFirstlevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);

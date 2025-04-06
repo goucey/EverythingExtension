@@ -251,6 +251,12 @@
   <data name="everything_macro_enabled_description" xml:space="preserve">
     <value>可用doc:、audio:、zip:、pic:、video:、web: 和 exe:等过滤器搜索文件</value>
   </data>
+  <data name="everything_max_search_result_limit" xml:space="preserve">
+    <value>搜索结果限制</value>
+  </data>
+  <data name="everything_max_search_result_limit_description" xml:space="preserve">
+    <value>搜索结果最大的返回数量（数量过多会导致 CmdPal 崩溃）</value>
+  </data>
   <data name="everything_name" xml:space="preserve">
     <value>名称</value>
   </data>

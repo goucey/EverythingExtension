@@ -144,9 +144,9 @@ namespace EverythingExtension.Pages
 
                 return CreateFolderIsEmptyCommandItem(Resources.everything_folder_is_empty);
             }
-
+            int index = 0;
             _directoryContents = [.. contents
-                .Select(s => new SearchResult(s))
+                .Select(s => new SearchResult(s,++index))
                 .Select(i => new EverythingListItem(i,true))];
 
             //_ = Task.Run(() =>
@@ -192,7 +192,7 @@ namespace EverythingExtension.Pages
 
         private IListItem[] CreateFolderIsEmptyCommandItem(string title)
         {
-            SearchResult result = new SearchResult(_path);
+            SearchResult result = new SearchResult(_path, 1);
             EverythingListItem listItem = new EverythingListItem(result);
             EmptyContent = new CommandItem(title: title)
             {

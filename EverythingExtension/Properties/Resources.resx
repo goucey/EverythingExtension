@@ -251,6 +251,12 @@ Use `@` to start with regular search. It should be noted that when regular searc
   <data name="everything_macro_enabled_description" xml:space="preserve">
     <value>Available doc:,audio:,zip:,pic:,video:,web: and exe: and so filters macro search files</value>
   </data>
+  <data name="everything_max_search_result_limit" xml:space="preserve">
+    <value>Search result limit</value>
+  </data>
+  <data name="everything_max_search_result_limit_description" xml:space="preserve">
+    <value>The maximum number of search results returned (too many can cause CmdPal to crash)</value>
+  </data>
   <data name="everything_name" xml:space="preserve">
     <value>Name</value>
   </data>

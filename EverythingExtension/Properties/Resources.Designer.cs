@@ -247,6 +247,24 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Search result limit 的本地化字符串。
+        /// </summary>
+        internal static string everything_max_search_result_limit {
+            get {
+                return ResourceManager.GetString("everything_max_search_result_limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The maximum number of search results returned (too many can cause CmdPal to crash) 的本地化字符串。
+        /// </summary>
+        internal static string everything_max_search_result_limit_description {
+            get {
+                return ResourceManager.GetString("everything_max_search_result_limit_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Name 的本地化字符串。
         /// </summary>
         internal static string everything_name {

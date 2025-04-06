@@ -236,7 +236,7 @@ namespace EverythingExtension.Search
                     }
 
                     extension ??= (resultType == ResultType.File ? Path.GetExtension(fileName) : null);
-                    var result = new SearchResult(fileName, fullPath, resultType, extension);
+                    var result = new SearchResult(fileName, fullPath, resultType, _searchResults.Count + 1, extension);
 
                     _searchResults.Enqueue(result);
                 }
