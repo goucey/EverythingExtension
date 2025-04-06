@@ -159,6 +159,10 @@ namespace EverythingExtension.SDK
         [DllImport(DllPath)]
         internal static extern int Everything_GetRevision();
 
+        [MinVersion("1.0.0")]
+        [DllImport(DllPath)]
+        internal static extern int Everything_GetBuildNumber();
+
         #endregion 1.0.0
 
         #region 1.4.1

@@ -95,7 +95,7 @@ namespace EverythingExtension.Search
         /// <summary>
         /// 文件或文件夹父级目录
         /// </summary>
-        public string ParentPath { get; set; }
+        public string? ParentPath { get; set; }
 
         public bool IsPreviewable => IsTextPreviewable || IsImagePreviewable;
 
