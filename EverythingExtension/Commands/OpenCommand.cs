@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EverythingExtension.Commands
 {
-    internal partial class OpenCommand : InvokableCommand
+    internal sealed partial class OpenCommand : InvokableCommand
     {
         #region Fields
 

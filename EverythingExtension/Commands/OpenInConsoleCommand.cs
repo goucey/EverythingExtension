@@ -14,7 +14,7 @@ using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {
-    internal partial class OpenInConsoleCommand : InvokableCommand
+    internal sealed partial class OpenInConsoleCommand : InvokableCommand
     {
         #region Public Constructors
 

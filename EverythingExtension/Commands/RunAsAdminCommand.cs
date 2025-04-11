@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {
-    internal partial class RunAsAdminCommand : InvokableCommand
+    internal sealed partial class RunAsAdminCommand : InvokableCommand
     {
         #region Public Constructors
 

@@ -22,7 +22,7 @@ using Windows.Storage.Streams;
 
 namespace EverythingExtension.Settings
 {
-    internal partial class EverythingListItem : ListItem
+    internal sealed partial class EverythingListItem : ListItem
     {
         #region Public Constructors
 
@@ -33,7 +33,7 @@ namespace EverythingExtension.Settings
             Subtitle = $"{search.FullPath}";
 
             if (search.Size.HasValue)
-                Tags = [new Tag(search.GetFileSizeDisplay()?? string.Empty)];
+                Tags = [new Tag(search.GetFileSizeDisplay() ?? string.Empty)];
 
             if (search.Type == ResultType.Folder)
                 Command = isFirstlevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);

@@ -19,7 +19,7 @@ namespace EverythingExtension.Commands
     /// <summary>
     /// 删除文件或文件夹命令
     /// </summary>
-    internal partial class DeleteCommand : InvokableCommand
+    internal sealed partial class DeleteCommand : InvokableCommand
     {
         #region Public Constructors
 

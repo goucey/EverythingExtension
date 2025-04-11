@@ -13,7 +13,7 @@ using EverythingExtension.Utils;
 
 namespace EverythingExtension.Commands
 {
-    internal partial class RunAsUserCommand : InvokableCommand
+    internal sealed partial class RunAsUserCommand : InvokableCommand
     {
         #region Public Constructors
 

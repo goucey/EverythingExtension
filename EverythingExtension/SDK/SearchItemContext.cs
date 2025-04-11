@@ -14,7 +14,7 @@ using static EverythingExtension.SDK.EverythingSDK;
 
 namespace EverythingExtension.SDK
 {
-    internal class SearchItemContext(int index, Version version)
+    internal sealed class SearchItemContext(int index, Version version)
     {
         #region Properties
 

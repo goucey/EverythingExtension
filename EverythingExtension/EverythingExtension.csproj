@@ -252,7 +252,7 @@
     <!-- Suppress DynamicallyAccessedMemberTypes.PublicParameterlessConstructor in fallback code path of Windows SDK projection -->
     <WarningsNotAsErrors>IL2081</WarningsNotAsErrors>
 
-    <PublishTrimmed>true</PublishTrimmed>
+    <PublishTrimmed>True</PublishTrimmed>
     <PublishSingleFile>true</PublishSingleFile>
     <PackageCertificateThumbprint>AF225F04225F046AFF9F2EB86E99FFAD2CBEDFAF</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -265,5 +265,6 @@
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageDir>E:\EverythingExtension\bin\x64\Release\net9.0-windows10.0.22621.0\win-x64\AppPackages\</AppxPackageDir>
+    <NeutralLanguage>zh-CN</NeutralLanguage>
   </PropertyGroup>
 </Project>
