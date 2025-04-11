@@ -13,7 +13,7 @@ using Windows.Foundation;
 
 namespace EverythingExtension.Pages
 {
-    internal partial class HelpPage : ContentPage
+    internal sealed partial class HelpPage : ContentPage
     {
         #region Fields
 

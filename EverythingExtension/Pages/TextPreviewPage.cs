@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace EverythingExtension.Pages
 {
-    internal partial class TextPreviewPage : ContentPage
+    internal sealed partial class TextPreviewPage : ContentPage
     {
         #region Fields
 

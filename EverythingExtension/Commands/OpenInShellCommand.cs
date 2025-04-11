@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {
-    internal partial class OpenInShellCommand : InvokableCommand
+    internal sealed partial class OpenInShellCommand : InvokableCommand
     {
         #region Fields
 

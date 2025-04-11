@@ -17,7 +17,7 @@ using EverythingExtension.Search;
 
 namespace EverythingExtension.Pages
 {
-    internal partial class DirectoryExplorePage : DynamicListPage
+    internal sealed partial class DirectoryExplorePage : DynamicListPage
     {
         #region Public Constructors
 

@@ -14,7 +14,7 @@ namespace EverythingExtension.Commands
     /// <summary>
     /// 将所选项目的路径复制到剪贴板
     /// </summary>
-    internal partial class CopyPathCommand : InvokableCommand
+    internal sealed partial class CopyPathCommand : InvokableCommand
     {
         #region Internal Constructors
 

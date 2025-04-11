@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EverythingExtension.SDK
 {
     [AttributeUsage(AttributeTargets.Method)]
-    internal class MinVersionAttribute(string version) : Attribute
+    internal sealed class MinVersionAttribute(string version) : Attribute
     {
         #region Properties
 
