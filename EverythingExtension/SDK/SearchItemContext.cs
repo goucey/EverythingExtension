@@ -2,15 +2,9 @@
 using EverythingExtension.Search;
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
-using static EverythingExtension.SDK.EverythingSDK;
+using static EverythingExtension.SDK.EverythingSdk;
 
 namespace EverythingExtension.SDK
 {
@@ -18,21 +12,21 @@ namespace EverythingExtension.SDK
     {
         #region Properties
 
-        public string FullPath => GetFullPath() ?? "";
+        private string FullPath => GetFullPath() ?? "";
 
-        public string Path => Invoke<IntPtr>("Everything_GetResultPathW").GetString();
+        private string Path => Invoke<IntPtr>("Everything_GetResultPathW").GetString();
 
-        public string FileName => Invoke<IntPtr>("Everything_GetResultFileNameW").GetString();
+        private string FileName => Invoke<IntPtr>("Everything_GetResultFileNameW").GetString();
 
         public string HighlightedFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFileNameW").GetString();
 
         public string HighlightedFullPathAndFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFullPathAndFileNameW").GetString();
 
-        public string Extension => Invoke<IntPtr>("Everything_GetResultExtensionW").GetString();
+        private string Extension => Invoke<IntPtr>("Everything_GetResultExtensionW").GetString();
 
-        public ResultType Type => GetResultType();
+        private ResultType Type => GetResultType();
 
-        public int? Size => GetFileSize();
+        private int? Size => GetFileSize();
 
         #endregion Properties
 
@@ -40,7 +34,7 @@ namespace EverythingExtension.SDK
 
         public SearchResult Result(int index)
         {
-            return new SearchResult(FileName, FullPath, Type, index, Extension)
+            return new SearchResult(FileName, FullPath, Type, Extension)
             {
                 Size = Size,
                 ParentPath = Path
@@ -65,15 +59,15 @@ namespace EverythingExtension.SDK
 
         private string? GetFullPath()
         {
-            MethodInfo? methodInfo = typeof(EverythingSDK).GetMethod("Everything_GetResultFullPathNameW", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            var methodInfo = typeof(EverythingSdk).GetMethod("Everything_GetResultFullPathNameW", BindingFlags.Static | BindingFlags.NonPublic);
 
             if (!methodInfo.IsVersionAvailable(version))
-                return default;
+                return null;
 
             if (methodInfo == null)
-                return default;
+                return null;
 
-            char[] path = new char[1024];
+            var path = new char[1024];
 
             _ = methodInfo.Invoke(null, [index, path, 1024]);
 
@@ -83,25 +77,25 @@ namespace EverythingExtension.SDK
         private int? GetFileSize()
         {
             if (Type != ResultType.File)
-                return default;
+                return null;
 
-            MethodInfo? methodInfo = typeof(EverythingSDK).GetMethod("Everything_GetResultSize", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            var methodInfo = typeof(EverythingSdk).GetMethod("Everything_GetResultSize", BindingFlags.Static | BindingFlags.NonPublic);
 
             if (!methodInfo.IsVersionAvailable(version))
-                return default;
+                return null;
 
             if (methodInfo == null)
-                return default;
+                return null;
 
-            object[] args = [index, new LARGE_INTEGER()];
+            object[] args = [index, new LargeInteger()];
             _ = methodInfo.Invoke(null, args);
-            LARGE_INTEGER size = (LARGE_INTEGER)args[1];
+            LargeInteger size = (LargeInteger)args[1];
             return size.LowPart;
         }
 
         private T? Invoke<T>(string methodName)
         {
-            MethodInfo? methodInfo = typeof(EverythingSDK).GetMethod(methodName, System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            MethodInfo? methodInfo = typeof(EverythingSdk).GetMethod(methodName, BindingFlags.Static | BindingFlags.NonPublic);
 
             if (!methodInfo.IsVersionAvailable(version))
                 return default;

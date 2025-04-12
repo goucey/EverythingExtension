@@ -8,20 +8,11 @@ using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
-using Microsoft.UI.Xaml.Shapes;
 
 using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
-using Windows.Storage.Streams;
 
 namespace EverythingExtension.Pages;
 
@@ -57,6 +48,10 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         WelcomeEmptyContentInitialize();
     }
 
+    ~EverythingExtensionPage()
+    {
+        Dispose(false);
+    }
     #endregion Public Constructors
 
     #region Properties
@@ -78,7 +73,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         Query(SearchText);
     }
 
-    public void Query(string query)
+    private void Query(string query)
     {
         _everythingSearchCookie = DateTime.Now.ToFileTime();
         _results.Clear();
@@ -102,14 +97,13 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         {
             _everythingSearch?.Execute(query, _everythingSearchCookie);
         }
-        catch (IPCErrorException)
+        catch (IpcErrorException)
         {
             EmptyContent = new CommandContextItem(title: Resources.everything_is_not_running)
             {
                 Icon = IconHelpers.FromRelativePath("Assets\\Images\\Warning.png"),
                 Command = new NoOpCommand()
             };
-            return;
         }
         catch (Exception e)
         {
@@ -118,7 +112,6 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
                 Icon = IconHelpers.FromRelativePath("Assets\\Images\\Error.png"),
                 Command = new CopyTextCommand(e.Message + "\r\n" + e.StackTrace)
             };
-            return;
         }
     }
 
@@ -145,8 +138,16 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
     public void Dispose()
     {
-        _everythingSearch = null;
+        Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _everythingSearch = null;
+        }
     }
 
     private void WelcomeEmptyContentInitialize()
@@ -167,9 +168,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         if (cookie != _everythingSearchCookie)
             return;
 
-        int index = 0;
-        SearchResult? result;
-        while (!_everythingSearch.SearchResults.IsEmpty && _everythingSearch.SearchResults.TryDequeue(out result) && ++index <= limit)
+        var index = 0;
+        while (!_everythingSearch.SearchResults.IsEmpty && _everythingSearch.SearchResults.TryDequeue(out var result) && ++index <= limit)
         {
             //IconInfo icon = null;
             //try
@@ -186,13 +186,13 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
             //    Debug.Write(ex);
             //    //Logger.LogError("Failed to get the icon.", ex);
             //}
-            var _item = new EverythingListItem(result);
+            var item = new EverythingListItem(result);
 
             //_item.Icon = icon;
 
-            result.Deleted = () => DeletedListItemHandler(_item);
+            result.Deleted = () => DeletedListItemHandler(item);
 
-            _results.Add(_item);
+            _results.Add(item);
         }
 
         HasMoreItems = !_everythingSearch.SearchResults.IsEmpty;
@@ -209,7 +209,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         _results.Clear();
         _everythingSearch?.SearchResults.Clear();
         _everythingSearch?.Cancel();
-        RaiseItemsChanged(-1);
+        RaiseItemsChanged();
     }
 
     #endregion Public Methods

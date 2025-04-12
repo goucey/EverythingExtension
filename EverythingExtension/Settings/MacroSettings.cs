@@ -2,9 +2,7 @@
 // MIT license. See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EverythingExtension.Settings
 {
@@ -13,7 +11,7 @@ namespace EverythingExtension.Settings
         #region Properties
 
         public string Prefix { get; set; } = prefix;
-        public string FileExtensions { get; set; } = fileExtensions;
+        private string FileExtensions { get; set; } = fileExtensions;
 
         #endregion Properties
 

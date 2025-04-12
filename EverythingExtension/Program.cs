@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.CommandPalette.Extensions;
-using Shmuelie.WinRTServer;
 using Shmuelie.WinRTServer.CsWinRT;
 using System;
 using System.Threading;
@@ -11,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace EverythingExtension;
 
-public class Program
+public static class Program
 {
     [MTAThread]
     public static async Task Main(string[] args)
     {
         if (args.Length > 0 && args[0] == "-RegisterProcessAsComServer")
         {
-            await using global::Shmuelie.WinRTServer.ComServer server = new();
+            await using Shmuelie.WinRTServer.ComServer server = new();
             ManualResetEvent extensionDisposedEvent = new(false);
             
             // We are instantiating an extension instance once above, and returning it every time the callback in RegisterExtension below is called.

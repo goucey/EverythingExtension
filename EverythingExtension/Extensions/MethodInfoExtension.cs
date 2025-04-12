@@ -1,6 +1,8 @@
-﻿using EverythingExtension.SDK;
+﻿using System;
+using System.Reflection;
+using EverythingExtension.SDK;
 
-namespace System.Reflection
+namespace EverythingExtension.Extensions
 
 {
     internal static class MethodInfoExtension
@@ -12,7 +14,7 @@ namespace System.Reflection
             if (methodInfo == null)
                 return false;
 
-            MinVersionAttribute? minVersion = methodInfo.GetCustomAttribute<MinVersionAttribute>();
+            var minVersion = methodInfo.GetCustomAttribute<MinVersionAttribute>();
             if (minVersion == null)
                 return true;
 

@@ -50,11 +50,9 @@ namespace EverythingExtension.Pages
 
             if (string.IsNullOrEmpty(newSearch))
             {
-                if (_filteredContents != null)
-                {
-                    _filteredContents = null;
-                    RaiseItemsChanged(-1);
-                }
+                if (_filteredContents == null) return;
+                _filteredContents = null;
+                RaiseItemsChanged(-1);
 
                 return;
             }
@@ -63,7 +61,7 @@ namespace EverythingExtension.Pages
             var filteredResults = ListHelpers.FilterList(
                 _directoryContents,
                 newSearch,
-                (s, i) => ListHelpers.ScoreListItem(s, i));
+                ListHelpers.ScoreListItem);
 
             if (_filteredContents != null)
             {
@@ -84,22 +82,15 @@ namespace EverythingExtension.Pages
         {
             if (_filteredContents != null)
             {
-                if (_filteredContents.Count > 0)
-                    return _filteredContents.ToArray();
-                else
-                {
-                    return CreateFolderIsEmptyCommandItem("搜索结果为空");
-                }
+                
+                        return _filteredContents.Count > 0
+                            ? _filteredContents.ToArray()
+                            : CreateFolderIsEmptyCommandItem("搜索结果为空");
             }
 
             if (_directoryContents != null)
             {
-                if (_directoryContents.Count > 0)
-                    return _directoryContents.ToArray();
-                else
-                {
-                    return CreateFolderIsEmptyCommandItem(Resources.everything_folder_is_empty);
-                }
+                return _directoryContents.Count > 0 ? _directoryContents.ToArray() : CreateFolderIsEmptyCommandItem(Resources.everything_folder_is_empty);
             }
 
             IsLoading = true;
@@ -136,17 +127,17 @@ namespace EverythingExtension.Pages
                 return [];
             }
 
-            var contents = Directory.EnumerateFileSystemEntries(_path);
+            var contents = Directory.EnumerateFileSystemEntries(_path).ToList();
 
-            if (!contents.Any())
+            if (contents.Count == 0)
             {
                 IsLoading = false;
 
                 return CreateFolderIsEmptyCommandItem(Resources.everything_folder_is_empty);
             }
-            int index = 0;
+            //var index = 0;
             _directoryContents = [.. contents
-                .Select(s => new SearchResult(s,++index))
+                .Select(s => new SearchResult(s))
                 .Select(i => new EverythingListItem(i,true))];
 
             //_ = Task.Run(() =>
@@ -180,19 +171,19 @@ namespace EverythingExtension.Pages
 
         #region Private Methods
 
-        private void HandlePathChangeRequested(EverythingListItem sender, string path)
+        /*private void HandlePathChangeRequested(EverythingListItem sender, string path)
         {
             _directoryContents = null;
             _filteredContents = null;
             _path = path;
             Title = path;
             SearchText = string.Empty;
-            RaiseItemsChanged(-1);
-        }
+            RaiseItemsChanged();
+        }*/
 
         private IListItem[] CreateFolderIsEmptyCommandItem(string title)
         {
-            SearchResult result = new SearchResult(_path, 1);
+            SearchResult result = new SearchResult(_path);
             EverythingListItem listItem = new EverythingListItem(result);
             EmptyContent = new CommandItem(title: title)
             {

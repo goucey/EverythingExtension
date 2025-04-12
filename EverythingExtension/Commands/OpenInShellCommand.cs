@@ -2,13 +2,8 @@
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {
@@ -24,12 +19,12 @@ namespace EverythingExtension.Commands
 
         #region Public Constructors
 
-        public OpenInShellCommand(string fileName, string argumants)
+        public OpenInShellCommand(string fileName, string arguments)
         {
             Name = Resources.everything_open_containing_folder;
             Icon = TheIcon;
             _fileName = fileName;
-            _arguments = argumants;
+            _arguments = arguments;
         }
 
         #endregion Public Constructors
@@ -42,11 +37,11 @@ namespace EverythingExtension.Commands
             return CommandResult.Dismiss();
         }
 
-        internal static async Task LaunchTarget(string fileName, string argumants)
+        private static async Task LaunchTarget(string fileName, string arguments)
         {
             await Task.Run(() =>
             {
-                Process.Start(new ProcessStartInfo(fileName, argumants) { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo(fileName, arguments) { UseShellExecute = true });
             });
         }
 

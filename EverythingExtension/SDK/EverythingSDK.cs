@@ -2,19 +2,15 @@
 // MIT license. See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
-
-using Windows.Foundation.Metadata;
 
 namespace EverythingExtension.SDK
 {
-    internal sealed class EverythingSDK
+    internal sealed class EverythingSdk
     {
         #region Fields
 
-        internal const string DllPath = "Everything64.dll";
+        private const string DllPath = "Everything64.dll";
 
         #endregion Fields
 
@@ -22,9 +18,9 @@ namespace EverythingExtension.SDK
 
         public enum StateCode
         {
-            OK,
+            Ok,
             MemoryError,
-            IPCError,
+            IpcError,
             RegisterClassExError,
             CreateWindowError,
             CreateThreadError,
@@ -32,6 +28,7 @@ namespace EverythingExtension.SDK
             InvalidCallError,
         }
 
+        [Flags]
         public enum RequestFlag
         {
             FileName = 0x00000001,
@@ -188,7 +185,7 @@ namespace EverythingExtension.SDK
 
         [MinVersion("1.4.1")]
         [DllImport(DllPath, CharSet = CharSet.Unicode)]
-        internal static extern bool Everything_GetResultSize(int nIndex, ref LARGE_INTEGER lpSize);
+        internal static extern bool Everything_GetResultSize(int nIndex, ref LargeInteger lpSize);
 
         [MinVersion("1.4.1")]
         [DllImport(DllPath, CharSet = CharSet.Unicode)]
@@ -201,7 +198,7 @@ namespace EverythingExtension.SDK
         #region Structs
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct LARGE_INTEGER
+        public struct LargeInteger
         {
             public int LowPart;
             public int HighPart;

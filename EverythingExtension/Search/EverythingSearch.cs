@@ -6,44 +6,25 @@ using EverythingExtension.SDK;
 using EverythingExtension.Settings;
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-
-using static EverythingExtension.SDK.EverythingSDK;
+using EverythingExtension.Extensions;
+using static EverythingExtension.SDK.EverythingSdk;
 
 namespace EverythingExtension.Search
 {
-    internal sealed class EverythingSearch
+    internal sealed class EverythingSearch(EverythingSettings settings)
     {
         #region Fields
 
-        private readonly Version _version;
         private readonly Lock _lockObject = new();
-        private readonly EverythingSettings _settings;
-        private readonly ConcurrentQueue<SearchResult> _searchResults = new();
-        private CancellationTokenSource? cancellationToken;
+        private CancellationTokenSource? _cancellationToken;
 
         #endregion Fields
-
-        #region Public Constructors
-
-        public EverythingSearch(EverythingSettings settings)
-        {
-            _settings = settings;
-            _version = GetVersion();
-        }
-
-        #endregion Public Constructors
 
         #region Properties
 
@@ -53,15 +34,9 @@ namespace EverythingExtension.Search
         /// <value> <c> true </c> if [match path]; otherwise, <c> false </c>. </value>
         public static bool MatchPath
         {
-            get
-            {
-                return EverythingSDK.Everything_GetMatchPath();
-            }
+            get => EverythingSdk.Everything_GetMatchPath();
 
-            set
-            {
-                EverythingSDK.Everything_SetMatchPath(value);
-            }
+            set => EverythingSdk.Everything_SetMatchPath(value);
         }
 
         /// <summary>
@@ -70,15 +45,9 @@ namespace EverythingExtension.Search
         /// <value> <c> true </c> if [match case]; otherwise, <c> false </c>. </value>
         public static bool MatchCase
         {
-            get
-            {
-                return EverythingSDK.Everything_GetMatchCase();
-            }
+            get => EverythingSdk.Everything_GetMatchCase();
 
-            set
-            {
-                EverythingSDK.Everything_SetMatchCase(value);
-            }
+            set => EverythingSdk.Everything_SetMatchCase(value);
         }
 
         /// <summary>
@@ -87,15 +56,9 @@ namespace EverythingExtension.Search
         /// <value> <c> true </c> if [match whole word]; otherwise, <c> false </c>. </value>
         public static bool MatchWholeWord
         {
-            get
-            {
-                return EverythingSDK.Everything_GetMatchWholeWord();
-            }
+            get => EverythingSdk.Everything_GetMatchWholeWord();
 
-            set
-            {
-                EverythingSDK.Everything_SetMatchWholeWord(value);
-            }
+            set => EverythingSdk.Everything_SetMatchWholeWord(value);
         }
 
         /// <summary>
@@ -104,22 +67,16 @@ namespace EverythingExtension.Search
         /// <value> <c> true </c> if [enable regex]; otherwise, <c> false </c>. </value>
         public static bool EnableRegex
         {
-            get
-            {
-                return EverythingSDK.Everything_GetRegex();
-            }
+            get => EverythingSdk.Everything_GetRegex();
 
-            set
-            {
-                EverythingSDK.Everything_SetRegex(value);
-            }
+            set => EverythingSdk.Everything_SetRegex(value);
         }
 
-        public Version Version => _version;
+        private Version Version { get; } = GetVersion();
 
         #endregion Properties
 
-        public ConcurrentQueue<SearchResult> SearchResults => _searchResults;
+        public ConcurrentQueue<SearchResult> SearchResults { get; } = new();
 
         public long Cookie { get; private set; }
 
@@ -132,19 +89,19 @@ namespace EverythingExtension.Search
             Cookie = cookie;
             SearchText = searchText;
 
-            cancellationToken?.Cancel();
-            cancellationToken ??= new CancellationTokenSource();
+            _cancellationToken?.Cancel();
+            _cancellationToken ??= new CancellationTokenSource();
 
-            ExecuteInternal(cancellationToken!.Token);
+            ExecuteInternal(_cancellationToken!.Token);
         }
 
         public void Cancel()
         {
-            if (cancellationToken != null)
+            if (_cancellationToken != null)
             {
-                cancellationToken.Cancel();
-                cancellationToken.Dispose();
-                cancellationToken = null;
+                _cancellationToken.Cancel();
+                _cancellationToken.Dispose();
+                _cancellationToken = null;
             }
         }
 
@@ -159,7 +116,7 @@ namespace EverythingExtension.Search
 
         private void SetRequestFlags()
         {
-            MethodInfo? methodInfo = typeof(EverythingSDK).GetMethod("Everything_SetRequestFlags", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            var methodInfo = typeof(EverythingSdk).GetMethod("Everything_SetRequestFlags", BindingFlags.Static | BindingFlags.NonPublic);
 
             if (!methodInfo.IsVersionAvailable(Version))
                 return;
@@ -180,12 +137,12 @@ namespace EverythingExtension.Search
                     throw new ArgumentNullException(nameof(SearchText));
 #pragma warning restore CA2208 // 正确实例化参数异常
                 }
-                string searchKeyword = SearchKeywordFormat(_settings, SearchText, out int maxCount, _settings.MacroEnabled);
+                string searchKeyword = SearchKeywordFormat(settings, SearchText, out int maxCount, settings.MacroEnabled);
 
                 if (maxCount < 0)
                 {
 #pragma warning disable CA2208 // 正确实例化参数异常
-                    throw new ArgumentOutOfRangeException(nameof(_settings.MaxSearchCount));
+                    throw new ArgumentOutOfRangeException(nameof(settings.MaxSearchCount));
 #pragma warning restore CA2208 // 正确实例化参数异常
                 }
                 //#if DEBUG
@@ -207,26 +164,26 @@ namespace EverythingExtension.Search
                     return;
                 }
 
-                EverythingSDK.Everything_SetOffset(0);
+                EverythingSdk.Everything_SetOffset(0);
                 if (token.IsCancellationRequested)
                 {
                     return;
                 }
 
-                EverythingSDK.Everything_SetMax(maxCount);
+                EverythingSdk.Everything_SetMax(maxCount);
                 if (token.IsCancellationRequested)
                 {
                     return;
                 }
 
-                EverythingSDK.Everything_SetSearchW(searchKeyword);
+                EverythingSdk.Everything_SetSearchW(searchKeyword);
 
                 if (token.IsCancellationRequested)
                 {
                     return;
                 }
 
-                if (!EverythingSDK.Everything_QueryW(true))
+                if (!EverythingSdk.Everything_QueryW(true))
                 {
                     CheckAndThrowExceptionOnError();
                     return;
@@ -237,18 +194,17 @@ namespace EverythingExtension.Search
                     return;
                 }
 
-                int count = EverythingSDK.Everything_GetNumResults();
+                var count = EverythingSdk.Everything_GetNumResults();
 
-                for (int idx = 0; idx < count; ++idx)
+                for (var idx = 0; idx < count; ++idx)
                 {
                     if (token.IsCancellationRequested)
                     {
                         return;
                     }
 
-                    SearchItemContext context = new SearchItemContext(idx, Version);
-                    if (context.Result != null)
-                        _searchResults.Enqueue(context.Result(_searchResults.Count + 1));
+                    var context = new SearchItemContext(idx, Version);
+                    SearchResults.Enqueue(context.Result(SearchResults.Count + 1));
                 }
             }
         }
@@ -257,6 +213,7 @@ namespace EverythingExtension.Search
 
         #region Private Methods
 
+        /*
         private static void ConvertHighlightFormat(string? contentHighlighted, out List<int> highlightData, out string fn)
         {
             highlightData = [];
@@ -285,10 +242,11 @@ namespace EverythingExtension.Search
 
             fn = content.ToString();
         }
+        */
 
         private static void CheckAndThrowExceptionOnError()
         {
-            switch (EverythingSDK.Everything_GetLastError())
+            switch (EverythingSdk.Everything_GetLastError())
             {
                 case StateCode.CreateThreadError:
                     throw new CreateThreadException();
@@ -298,8 +256,8 @@ namespace EverythingExtension.Search
                     throw new InvalidCallException();
                 case StateCode.InvalidIndexError:
                     throw new InvalidIndexException();
-                case StateCode.IPCError:
-                    throw new IPCErrorException();
+                case StateCode.IpcError:
+                    throw new IpcErrorException();
                 case StateCode.MemoryError:
                     throw new MemoryErrorException();
                 case StateCode.RegisterClassExError:
@@ -310,17 +268,17 @@ namespace EverythingExtension.Search
         // public void Load(string sdkPath) { _ = LoadLibrary(sdkPath); }
         private static string SearchKeywordFormat(EverythingSettings settings, string query, out int maxCount, bool macroEnabled)
         {
-            string keyword = query;
+            var keyword = query;
             if (query.StartsWith("@", StringComparison.CurrentCultureIgnoreCase))
             {
-                EverythingSDK.Everything_SetRegex(true);
+                EverythingSdk.Everything_SetRegex(true);
 
                 // keyWord = keyWord.Substring(1);
                 keyword = query[1..];
             }
             else
             {
-                EverythingSDK.Everything_SetRegex(false);
+                EverythingSdk.Everything_SetRegex(false);
             }
 
             Match match = Regex.Match(keyword, @"(count:(?<count>\d+))", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -342,8 +300,8 @@ namespace EverythingExtension.Search
                 return keyword;
             }
 
-            string[] keywordItems = keyword.Split(':');
-            string? separator = keywordItems?.FirstOrDefault();
+            var keywordItems = keyword.Split(':');
+            var separator = keywordItems.FirstOrDefault();
 
             if (string.IsNullOrWhiteSpace(separator))
             {
@@ -351,7 +309,7 @@ namespace EverythingExtension.Search
             }
 
             var macro = settings.Macros.FirstOrDefault(m => m.Prefix.Equals(separator, StringComparison.OrdinalIgnoreCase));
-            return macro == null ? keyword : $"{macro} {string.Join(":", keywordItems?.Skip(1) ?? [])}";
+            return macro == null ? keyword : $"{macro} {string.Join(":", keywordItems.Skip(1))}";
         }
 
         #endregion Private Methods

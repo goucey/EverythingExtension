@@ -4,15 +4,8 @@ using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {

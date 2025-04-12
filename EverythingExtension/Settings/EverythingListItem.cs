@@ -5,19 +5,10 @@ using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
-using Microsoft.Win32;
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Resources;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 
-using Windows.Foundation;
 using Windows.Storage.Streams;
 
 namespace EverythingExtension.Settings
@@ -26,7 +17,7 @@ namespace EverythingExtension.Settings
     {
         #region Public Constructors
 
-        public EverythingListItem(SearchResult search, bool isFirstlevelFolder = false) : base(new NoOpCommand())
+        public EverythingListItem(SearchResult search, bool isFirstLevelFolder = false) : base(new NoOpCommand())
         {
             //new DirectoryExplorePage(search.FullPath)
             Title = search.FileName;
@@ -36,13 +27,13 @@ namespace EverythingExtension.Settings
                 Tags = [new Tag(search.GetFileSizeDisplay() ?? string.Empty)];
 
             if (search.Type == ResultType.Folder)
-                Command = isFirstlevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);
+                Command = isFirstLevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);
             else
                 Command = new OpenCommand(search);
 
             _search = search;
 
-            _details = new Lazy<Details?>(() => BuildDetails());
+            _details = new Lazy<Details?>(BuildDetails);
 
             _icon = new Lazy<IconInfo?>(() =>
             {
@@ -51,7 +42,7 @@ namespace EverythingExtension.Settings
                 return t.Result;
             });
 
-            MoreCommands = [.. ContextMenuLoader.LoadContextMenus(search, isFirstlevelFolder)];
+            MoreCommands = [.. ContextMenuLoader.LoadContextMenus(search, isFirstLevelFolder)];
         }
 
         #endregion Public Constructors
@@ -77,7 +68,7 @@ namespace EverythingExtension.Settings
 
         private static Details? BuildDetails()
         {
-            return default;
+            return null;
             //if (_search.Type != ResultType.File)
             //    return default;
 
@@ -117,8 +108,10 @@ namespace EverythingExtension.Settings
             }
             catch
             {
+                // ignored
             }
-            return default; //new IconInfo($"{_search.FullPath},1");
+
+            return null; //new IconInfo($"{_search.FullPath},1");
         }
 
         #endregion Private Methods

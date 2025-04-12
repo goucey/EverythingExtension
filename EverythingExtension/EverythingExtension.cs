@@ -10,16 +10,9 @@ using Microsoft.CommandPalette.Extensions;
 namespace EverythingExtension;
 
 [Guid("ee1d82f8-afa1-4404-b545-6753bc0713cb")]
-public sealed partial class EverythingExtension : IExtension, IDisposable
+public sealed partial class EverythingExtension(ManualResetEvent extensionDisposedEvent) : IExtension, IDisposable
 {
-    private readonly ManualResetEvent _extensionDisposedEvent;
-
     private readonly EverythingExtensionCommandsProvider _provider = new();
-
-    public EverythingExtension(ManualResetEvent extensionDisposedEvent)
-    {
-        this._extensionDisposedEvent = extensionDisposedEvent;
-    }
 
     public object? GetProvider(ProviderType providerType)
     {
@@ -30,5 +23,5 @@ public sealed partial class EverythingExtension : IExtension, IDisposable
         };
     }
 
-    public void Dispose() => this._extensionDisposedEvent.Set();
+    public void Dispose() => extensionDisposedEvent.Set();
 }

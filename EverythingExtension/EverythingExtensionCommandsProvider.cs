@@ -10,7 +10,7 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 
 namespace EverythingExtension;
 
-public partial class EverythingExtensionCommandsProvider : CommandProvider
+public sealed partial class EverythingExtensionCommandsProvider : CommandProvider
 {
     #region Public Constructors
 

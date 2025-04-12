@@ -5,12 +5,9 @@ using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace EverythingExtension.Settings
 {
@@ -26,7 +23,7 @@ namespace EverythingExtension.Settings
 
         #region Fields
 
-        private static readonly string _namespace = "everything";
+        private const string Namespace = "everything";
 
         private readonly ToggleSetting _macroEnabled = new(Namespaced(nameof(MacroEnabled)), Resources.everything_macro_enabled, Resources.everything_macro_enabled_description, true);
         private readonly TextSetting _maxSearchCount = new(Namespaced(nameof(MaxSearchCount)), Resources.everything_max_search_result_limit, Resources.everything_max_search_result_limit_description, DefaultMaxSearchCount.ToString(CultureInfo.InvariantCulture));
@@ -35,13 +32,13 @@ namespace EverythingExtension.Settings
 
         #region Private Methods
 
-        private static string Namespaced(string propertyName) => $"{_namespace}.{propertyName}";
+        private static string Namespaced(string propertyName) => $"{Namespace}.{propertyName}";
 
         #endregion Private Methods
 
         #region Public Constructors
 
-        public EverythingSettings()
+        private EverythingSettings()
         {
             FilePath = SettingsJsonPath();
 
@@ -50,12 +47,12 @@ namespace EverythingExtension.Settings
             Settings.Add(_macroEnabled);
             Settings.Add(_maxSearchCount);
 
-            Settings.SettingsChanged += (s, a) => SaveSettings();
+            Settings.SettingsChanged += (_, _) => SaveSettings();
         }
 
         #endregion Public Constructors
 
-        internal static EverythingSettings Instance = new();
+        internal static readonly EverythingSettings Instance = new();
 
         // 3g2,3gp,3gp2,3gpp,amr, asf,avi, bik,d2v,divx,drc,dsa,dsm,dss,dsv, flc,fli,flic,flv,
         // ifo,ivf,m1v,m2v, m4v,mkv,mp2v,mp4, mpe,mpeg,mpg, mpv2, mov, ogm,
@@ -74,7 +71,7 @@ namespace EverythingExtension.Settings
 
         internal int MaxSearchCount
         {
-            get => int.TryParse(_maxSearchCount.Value, out int maxSearchCount) ? maxSearchCount : DefaultMaxSearchCount;
+            get => int.TryParse(_maxSearchCount.Value, out var maxSearchCount) ? maxSearchCount : DefaultMaxSearchCount;
             set
             {
                 _maxSearchCount.Value = value.ToString(CultureInfo.InvariantCulture);
@@ -84,7 +81,7 @@ namespace EverythingExtension.Settings
 
         internal bool MacroEnabled => _macroEnabled.Value;
 
-        internal static string SettingsJsonPath()
+        private static string SettingsJsonPath()
         {
             var directory = Utilities.BaseSettingsPath("Microsoft.CmdPal");
             Directory.CreateDirectory(directory);

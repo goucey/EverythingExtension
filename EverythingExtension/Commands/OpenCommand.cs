@@ -3,12 +3,7 @@ using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EverythingExtension.Commands
@@ -17,7 +12,7 @@ namespace EverythingExtension.Commands
     {
         #region Fields
 
-        private static readonly IconInfo TheIcon = new("\uE8E5");
+        private static readonly IconInfo _theIcon = new("\uE8E5");
         private readonly SearchResult _searchResult;
 
         #endregion Fields
@@ -27,7 +22,7 @@ namespace EverythingExtension.Commands
         public OpenCommand(SearchResult searchResult)
         {
             Name = Resources.everything_open;
-            Icon = TheIcon;
+            Icon = _theIcon;
             _searchResult = searchResult;
         }
 
@@ -41,7 +36,7 @@ namespace EverythingExtension.Commands
             return CommandResult.Hide();
         }
 
-        internal static async Task LaunchTarget(string t)
+        private static async Task LaunchTarget(string t)
         {
             await Task.Run(() =>
             {

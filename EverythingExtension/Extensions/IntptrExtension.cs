@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EverythingExtension.Extensions
 {
-    internal static class IntptrExtension
+    internal static class IntPtrExtension
     {
         #region Public Methods
 

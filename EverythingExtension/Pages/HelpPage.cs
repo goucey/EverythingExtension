@@ -4,12 +4,6 @@ using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Windows.Foundation;
 
 namespace EverythingExtension.Pages
 {
@@ -46,6 +40,7 @@ namespace EverythingExtension.Pages
 
         public override IContent[] GetContent() => [_mdContent];
 
+        /*
         private static string GetMarkdownContent()
         {
             return @"
@@ -126,6 +121,7 @@ namespace EverythingExtension.Pages
   - [CmdPal](https://github.com/microsoft/PowerToys/tree/main/src/modules/cmdpal)
 ";
         }
+        */
 
         #endregion Public Methods
     }

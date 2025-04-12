@@ -5,13 +5,8 @@ using EverythingExtension.Utils;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace EverythingExtension.Commands
 {
@@ -40,11 +35,11 @@ namespace EverythingExtension.Commands
 
         public override CommandResult Invoke()
         {
-            var _target = _searchResult.FullPath;
-            var _parentDir = _searchResult.GetDirectoryPath();
+            var target = _searchResult.FullPath;
+            var parentDir = _searchResult.GetDirectoryPath();
 
-            if (!string.IsNullOrEmpty(_parentDir))
-                _ = RunAsAdmin(_target, _parentDir, false).ConfigureAwait(false);
+            if (!string.IsNullOrEmpty(parentDir))
+                _ = RunAsAdmin(target, parentDir, false).ConfigureAwait(false);
 
             return CommandResult.Dismiss();
         }
@@ -53,7 +48,7 @@ namespace EverythingExtension.Commands
 
         #region Internal Methods
 
-        internal static async Task RunAsAdmin(string target, string parentDir, bool packaged)
+        private static async Task RunAsAdmin(string target, string parentDir, bool packaged)
         {
             await Task.Run(() =>
             {
@@ -62,7 +57,7 @@ namespace EverythingExtension.Commands
                     var command = "shell:AppsFolder\\" + target;
                     command = Environment.ExpandEnvironmentVariables(command.Trim());
 
-                    var info = ShellCommand.SetProcessStartInfo(command, verb: "runas");
+                    var info = command.SetProcessStartInfo(verb: "runas");
                     info.UseShellExecute = true;
                     info.Arguments = string.Empty;
                     Process.Start(info);

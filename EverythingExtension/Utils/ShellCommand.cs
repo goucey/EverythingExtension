@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EverythingExtension.Utils
 {
@@ -30,7 +26,12 @@ namespace EverythingExtension.Utils
                 WorkingDirectory = parentDir,
                 UseShellExecute = true,
                 Arguments = programArguments,
-                Verb = runAs == RunAsType.Administrator ? "runAs" : runAs == RunAsType.OtherUser ? "runAsUser" : string.Empty,
+                Verb = runAs switch
+                {
+                    RunAsType.Administrator => "runAs",
+                    RunAsType.OtherUser => "runAsUser",
+                    _ => string.Empty
+                },
             };
         }
 

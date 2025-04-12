@@ -5,12 +5,7 @@ using EverythingExtension.Search;
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EverythingExtension.Pages
 {
@@ -19,7 +14,7 @@ namespace EverythingExtension.Pages
         #region Fields
 
         private readonly MarkdownContent _mdContent;
-        private readonly IconInfo TheIcon = new IconInfo("\ue7b3");
+        private readonly IconInfo _theIcon = new IconInfo("\ue7b3");
 
         #endregion Fields
 
@@ -27,7 +22,7 @@ namespace EverythingExtension.Pages
 
         public TextPreviewPage(string fileName, string content)
         {
-            Icon = TheIcon;
+            Icon = _theIcon;
             Title = fileName;
             Name = Resources.everything_text_preview;
             //action:()=>{ this.RaiseItemsChanged(); },
@@ -39,13 +34,13 @@ namespace EverythingExtension.Pages
 
         public TextPreviewPage(SearchResult searchResult)
         {
-            Icon = TheIcon;
+            Icon = _theIcon;
             Title = searchResult.FileName;
             Name = Resources.everything_text_preview;
 
             string content = Resources.everything_text_preview_not_supported;
 
-            if (searchResult.IsPreviewable)
+            if (searchResult.IsPreview)
             {
                 content = searchResult.GetContent() ?? Resources.everything_text_preview_not_supported;
             }

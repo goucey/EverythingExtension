@@ -1,12 +1,7 @@
 ﻿using Microsoft.CommandPalette.Extensions.Toolkit;
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using EverythingExtension.Search;
 using EverythingExtension.Properties;
 using EverythingExtension.Utils;
@@ -39,11 +34,11 @@ namespace EverythingExtension.Commands
 
         public override CommandResult Invoke()
         {
-            var _target = _searchResult.FullPath;
-            var _parentDir = _searchResult.GetDirectoryPath();
+            var target = _searchResult.FullPath;
+            var parentDir = _searchResult.GetDirectoryPath();
 
-            if (!string.IsNullOrEmpty(_parentDir))
-                _ = RunAsAdmin(_target, _parentDir).ConfigureAwait(false);
+            if (!string.IsNullOrEmpty(parentDir))
+                _ = RunAsAdmin(target, parentDir).ConfigureAwait(false);
 
             return CommandResult.Dismiss();
         }
@@ -52,7 +47,7 @@ namespace EverythingExtension.Commands
 
         #region Internal Methods
 
-        internal static async Task RunAsAdmin(string target, string parentDir)
+        private static async Task RunAsAdmin(string target, string parentDir)
         {
             await Task.Run(() =>
             {

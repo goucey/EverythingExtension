@@ -11,17 +11,11 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace EverythingExtension
 {
-    internal sealed class ContextMenuLoader
+    internal static class ContextMenuLoader
     {
         #region Fields
 
@@ -33,19 +27,19 @@ namespace EverythingExtension
         //private readonly PluginInitContext _context;
 
         // Extensions for adding run as admin context menu item for applications
-        private static readonly string[] appExtensions = { ".exe", ".bat", ".appref-ms", ".lnk", ".msi", ".msix" };
+        private static readonly string[] AppExtensions = [".exe", ".bat", ".appref-ms", ".lnk", ".msi", ".msix"];
 
         #endregion Fields
 
         #region Public Methods
 
-        public static IContextItem[] LoadContextMenus(SearchResult searchResult, bool isFirstlevelFolder = false)
+        public static IContextItem[] LoadContextMenus(SearchResult searchResult, bool isFirstLevelFolder = false)
         {
-            List<IContextItem>? contextMenus = [];
+            List<IContextItem> contextMenus = [];
             // Test to check if File can be Run as admin, if yes, we add a 'run as admin' context
             // menu item
 
-            if (searchResult.IsPreviewable)
+            if (searchResult.IsPreview)
             {
                 contextMenus.Add(new CommandContextItem(new TextPreviewPage(searchResult)));
             }
@@ -62,12 +56,9 @@ namespace EverythingExtension
             }
             else
             {
-                if (isFirstlevelFolder)
-                {
-                    contextMenus.Add(new CommandContextItem(new OpenCommand(searchResult)));
-                }
-                else
-                    contextMenus.Add(new CommandContextItem(new DirectoryExplorePage(searchResult.FullPath)));
+                contextMenus.Add(isFirstLevelFolder
+                    ? new CommandContextItem(new OpenCommand(searchResult))
+                    : new CommandContextItem(new DirectoryExplorePage(searchResult.FullPath)));
             }
 
             contextMenus.Add(new CommandContextItem(new CopyPathCommand(searchResult)));
@@ -85,7 +76,7 @@ namespace EverythingExtension
         private static bool CanFileBeRunAsAdmin(string path)
         {
             string fileExtension = Path.GetExtension(path);
-            foreach (string extension in appExtensions)
+            foreach (string extension in AppExtensions)
             {
                 // Using OrdinalIgnoreCase since this is internal
                 if (extension.Equals(fileExtension, StringComparison.OrdinalIgnoreCase))
