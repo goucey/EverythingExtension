@@ -13,10 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-
 namespace EverythingExtension.Pages;
 
-internal sealed partial class EverythingExtensionPage : DynamicListPage, IDisposable
+internal sealed partial class EverythingExtensionPage : DynamicListPage
 {
     #region Fields
 
@@ -48,10 +47,6 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         WelcomeEmptyContentInitialize();
     }
 
-    ~EverythingExtensionPage()
-    {
-        Dispose(false);
-    }
     #endregion Public Constructors
 
     #region Properties
@@ -71,6 +66,27 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
             await Task.Delay(100);
         }
         Query(SearchText);
+    }
+
+    public override void UpdateSearchText(string oldSearch, string newSearch)
+    {
+        if (oldSearch != newSearch)
+        {
+            _ = Task.Run(() =>
+            {
+                //await DelayQuery();
+                Query(newSearch);
+                LoadMore();
+            });
+        }
+    }
+
+    public override void LoadMore()
+    {
+        IsLoading = true;
+        FetchItems(30);
+        IsLoading = false;
+        RaiseItemsChanged(_results.Count);
     }
 
     private void Query(string query)
@@ -112,41 +128,6 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
                 Icon = IconHelpers.FromRelativePath("Assets\\Images\\Error.png"),
                 Command = new CopyTextCommand(e.Message + "\r\n" + e.StackTrace)
             };
-        }
-    }
-
-    public override void UpdateSearchText(string oldSearch, string newSearch)
-    {
-        if (oldSearch != newSearch)
-        {
-            _ = Task.Run(() =>
-            {
-                //await DelayQuery();
-                Query(newSearch);
-                LoadMore();
-            });
-        }
-    }
-
-    public override void LoadMore()
-    {
-        IsLoading = true;
-        FetchItems(30);
-        IsLoading = false;
-        RaiseItemsChanged(_results.Count);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            _everythingSearch = null;
         }
     }
 
