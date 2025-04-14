@@ -19,7 +19,6 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
         DisplayName = Resources.everything_plugin_name;
         Icon = IconHelpers.FromRelativePath("Assets\\Everything.png");
         Settings = EverythingSettings.Instance.Settings;
-
         _commands = [
             new CommandItem(new EverythingExtensionPage(EverythingSettings.Instance)) {
                 Title = DisplayName,

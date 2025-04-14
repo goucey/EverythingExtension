@@ -337,6 +337,15 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Settings 的本地化字符串。
+        /// </summary>
+        internal static string everything_plugin_settings {
+            get {
+                return ResourceManager.GetString("everything_plugin_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Everything query error 的本地化字符串。
         /// </summary>
         internal static string everything_query_error {

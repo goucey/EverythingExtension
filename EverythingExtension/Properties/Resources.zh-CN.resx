@@ -281,6 +281,9 @@
   <data name="everything_plugin_name" xml:space="preserve">
     <value>Everything 搜索</value>
   </data>
+  <data name="everything_plugin_settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
   <data name="everything_query_error" xml:space="preserve">
     <value>Everything 查询错误</value>
   </data>

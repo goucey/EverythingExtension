@@ -281,6 +281,9 @@ Use `@` to start with regular search. It should be noted that when regular searc
   <data name="everything_plugin_name" xml:space="preserve">
     <value>Everything Search</value>
   </data>
+  <data name="everything_plugin_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="everything_query_error" xml:space="preserve">
     <value>Everything query error</value>
   </data>
