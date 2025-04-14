@@ -2,7 +2,10 @@
 using EverythingExtension.Search;
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 
 using static EverythingExtension.SDK.EverythingSdk;
 
@@ -12,16 +15,13 @@ namespace EverythingExtension.SDK
     {
         #region Properties
 
-        private string FullPath => GetFullPath() ?? "";
+        public string HighlightedFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFileNameW").GetString();
+        public string HighlightedFullPathAndFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFullPathAndFileNameW").GetString();
+        private string FullPath => GetFullPath() ?? ConvertHighlightToFullPath();
 
         private string Path => Invoke<IntPtr>("Everything_GetResultPathW").GetString();
 
         private string FileName => Invoke<IntPtr>("Everything_GetResultFileNameW").GetString();
-
-        public string HighlightedFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFileNameW").GetString();
-
-        public string HighlightedFullPathAndFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFullPathAndFileNameW").GetString();
-
         private string Extension => Invoke<IntPtr>("Everything_GetResultExtensionW").GetString();
 
         private ResultType Type => GetResultType();
@@ -32,7 +32,7 @@ namespace EverythingExtension.SDK
 
         #region Public Methods
 
-        public SearchResult Result(int index)
+        public SearchResult Result()
         {
             return new SearchResult(FileName, FullPath, Type, Extension)
             {
@@ -104,6 +104,29 @@ namespace EverythingExtension.SDK
                 return default;
 
             return (T?)methodInfo.Invoke(null, [index]);
+        }
+
+        private string ConvertHighlightToFullPath()
+        {
+            StringBuilder content = new StringBuilder();
+            bool flag = false;
+            char[]? contentArray = HighlightedFullPathAndFileName?.ToCharArray();
+            int count = 0;
+            for (int i = 0; i < contentArray!.Length; i++)
+            {
+                char current = HighlightedFullPathAndFileName![i];
+                if (current == '*')
+                {
+                    flag = !flag;
+                    count = count + 1;
+                }
+                else
+                {
+                    content.Append(current);
+                }
+            }
+
+            return content.ToString();
         }
 
         #endregion Private Methods

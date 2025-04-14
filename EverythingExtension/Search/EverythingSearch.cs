@@ -204,7 +204,7 @@ namespace EverythingExtension.Search
                     }
 
                     var context = new SearchItemContext(idx, Version);
-                    SearchResults.Enqueue(context.Result(SearchResults.Count + 1));
+                    SearchResults.Enqueue(context.Result());
                 }
             }
         }

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace EverythingExtension.Pages;
 
-internal sealed partial class EverythingExtensionPage : DynamicListPage
+internal sealed partial class EverythingExtensionPage : DynamicListPage, IDisposable
 {
     #region Fields
 
@@ -45,6 +45,11 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage
         _helpPage = new HelpPage();
         _helpPage.GoBackHomePage += GoBackHomePageHandler;
         WelcomeEmptyContentInitialize();
+    }
+
+    ~EverythingExtensionPage()
+    {
+        Dispose(false);
     }
 
     #endregion Public Constructors
@@ -87,6 +92,20 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage
         FetchItems(30);
         IsLoading = false;
         RaiseItemsChanged(_results.Count);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _everythingSearch = null;
+        }
     }
 
     private void Query(string query)
