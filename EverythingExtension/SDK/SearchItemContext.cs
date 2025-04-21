@@ -1,6 +1,8 @@
 ﻿using EverythingExtension.Extensions;
 using EverythingExtension.Search;
 
+using Serilog;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -34,6 +36,9 @@ namespace EverythingExtension.SDK
 
         public SearchResult Result()
         {
+            if (string.IsNullOrWhiteSpace(FullPath))
+                Log.Information("Result: {FileName} → {FullPath}", FileName, FullPath);
+
             return new SearchResult(FileName, FullPath, Type, Extension)
             {
                 Size = Size,
@@ -59,19 +64,15 @@ namespace EverythingExtension.SDK
 
         private string? GetFullPath()
         {
-            var methodInfo = typeof(EverythingSdk).GetMethod("Everything_GetResultFullPathNameW", BindingFlags.Static | BindingFlags.NonPublic);
-
-            if (!methodInfo.IsVersionAvailable(version))
-                return null;
-
-            if (methodInfo == null)
-                return null;
-
             var path = new char[1024];
 
-            _ = methodInfo.Invoke(null, [index, path, 1024]);
+            object[] args = [index, path, 1024];
 
-            return new string(path).TrimEnd('\0');
+            _ = Invoke<object>("Everything_GetResultFullPathNameW", ref args);
+
+            string fullPath = new string(path).TrimEnd('\0');
+
+            return string.IsNullOrWhiteSpace(fullPath) ? null : fullPath;
         }
 
         private int? GetFileSize()
@@ -79,16 +80,10 @@ namespace EverythingExtension.SDK
             if (Type != ResultType.File)
                 return null;
 
-            var methodInfo = typeof(EverythingSdk).GetMethod("Everything_GetResultSize", BindingFlags.Static | BindingFlags.NonPublic);
-
-            if (!methodInfo.IsVersionAvailable(version))
-                return null;
-
-            if (methodInfo == null)
-                return null;
-
             object[] args = [index, new LargeInteger()];
-            _ = methodInfo.Invoke(null, args);
+
+            _ = Invoke<object>("Everything_GetResultSize", ref args);
+
             LargeInteger size = (LargeInteger)args[1];
             return size.LowPart;
         }
@@ -98,12 +93,56 @@ namespace EverythingExtension.SDK
             MethodInfo? methodInfo = typeof(EverythingSdk).GetMethod(methodName, BindingFlags.Static | BindingFlags.NonPublic);
 
             if (!methodInfo.IsVersionAvailable(version))
+            {
+                Log.Warning("{methodName} 当前版本不支持", methodName);
                 return default;
+            }
 
             if (methodInfo == null)
+            {
+                Log.Warning("{methodName} 接口不存在", methodName);
                 return default;
+            }
 
             return (T?)methodInfo.Invoke(null, [index]);
+        }
+
+        private T? Invoke<T>(string methodName, ref object[] args)
+        {
+            MethodInfo? methodInfo = typeof(EverythingSdk).GetMethod(methodName, BindingFlags.Static | BindingFlags.NonPublic);
+
+            if (!methodInfo.IsVersionAvailable(version))
+            {
+                Log.Warning("{methodName} 当前版本不支持", methodName);
+                return default;
+            }
+
+            if (methodInfo == null)
+            {
+                Log.Warning("{methodName} 接口不存在", methodName);
+                return default;
+            }
+
+            return (T?)methodInfo.Invoke(null, args);
+        }
+
+        private void Invoke(string methodName, ref object[] args)
+        {
+            MethodInfo? methodInfo = typeof(EverythingSdk).GetMethod(methodName, BindingFlags.Static | BindingFlags.NonPublic);
+
+            if (!methodInfo.IsVersionAvailable(version))
+            {
+                Log.Warning("{methodName} 当前版本不支持", methodName);
+                return;
+            }
+
+            if (methodInfo == null)
+            {
+                Log.Warning("{methodName} 接口不存在", methodName);
+                return;
+            }
+
+            _ = methodInfo.Invoke(null, args);
         }
 
         private string ConvertHighlightToFullPath()
@@ -118,7 +157,7 @@ namespace EverythingExtension.SDK
                 if (current == '*')
                 {
                     flag = !flag;
-                    count = count + 1;
+                    count++;
                 }
                 else
                 {
