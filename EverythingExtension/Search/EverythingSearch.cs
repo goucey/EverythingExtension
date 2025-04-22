@@ -26,6 +26,8 @@ namespace EverythingExtension.Search
 
         #endregion Fields
 
+        private static Version _version = new Version("1.0.0.0");
+
         #region Properties
 
         /// <summary>
@@ -72,8 +74,6 @@ namespace EverythingExtension.Search
             set => EverythingSdk.Everything_SetRegex(value);
         }
 
-        private Version Version { get; } = GetVersion();
-
         #endregion Properties
 
         public ConcurrentQueue<SearchResult> SearchResults { get; } = new();
@@ -107,18 +107,23 @@ namespace EverythingExtension.Search
 
         private static Version GetVersion()
         {
-            int majorVersion = Everything_GetMajorVersion();
-            int minorVersion = Everything_GetMinorVersion();
-            int revision = Everything_GetRevision();
-            int build = Everything_GetBuildNumber();
-            return new Version(majorVersion, minorVersion, revision, build);
+            if (_version == null || _version <= new Version("1.0.0.0"))
+            {
+                int majorVersion = Everything_GetMajorVersion();
+                int minorVersion = Everything_GetMinorVersion();
+                int revision = Everything_GetRevision();
+                int build = Everything_GetBuildNumber();
+                _version = new Version(majorVersion, minorVersion, revision, build);
+            }
+
+            return _version;
         }
 
-        private void SetRequestFlags()
+        private static void SetRequestFlags()
         {
             var methodInfo = typeof(EverythingSdk).GetMethod("Everything_SetRequestFlags", BindingFlags.Static | BindingFlags.NonPublic);
 
-            if (!methodInfo.IsVersionAvailable(Version))
+            if (!methodInfo.IsVersionAvailable(GetVersion()))
                 return;
 
             if (methodInfo == null)
@@ -203,7 +208,7 @@ namespace EverythingExtension.Search
                         return;
                     }
 
-                    var context = new SearchItemContext(idx, Version);
+                    var context = new SearchItemContext(idx, GetVersion());
                     SearchResults.Enqueue(context.Result());
                 }
             }

@@ -94,7 +94,7 @@ namespace EverythingExtension.SDK
 
             if (!methodInfo.IsVersionAvailable(version))
             {
-                Log.Warning("{methodName} 当前版本不支持", methodName);
+                Log.Warning("{methodName} 当前版本【{version}】不支持", methodName, version);
                 return default;
             }
 
