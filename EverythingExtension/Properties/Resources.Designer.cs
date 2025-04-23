@@ -61,7 +61,7 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
-        ///   查找类似 🔴 Fail to set text in clipboard 的本地化字符串。
+        ///   查找类似 🔴 Failed to set to clipboard 的本地化字符串。
         /// </summary>
         internal static string everything_clipboard_failed {
             get {
@@ -70,7 +70,7 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
-        ///   查找类似 🟢 Successfully copied to clipboard! 的本地化字符串。
+        ///   查找类似 🟢 Successfully set to clipboard! 的本地化字符串。
         /// </summary>
         internal static string everything_clipboard_success {
             get {
@@ -84,6 +84,15 @@ namespace EverythingExtension.Properties {
         internal static string everything_copied {
             get {
                 return ResourceManager.GetString("everything_copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Copy file or folder 的本地化字符串。
+        /// </summary>
+        internal static string everything_copy_file {
+            get {
+                return ResourceManager.GetString("everything_copy_file", resourceCulture);
             }
         }
         
@@ -225,6 +234,15 @@ namespace EverythingExtension.Properties {
         internal static string everything_is_not_running {
             get {
                 return ResourceManager.GetString("everything_is_not_running", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Tags 的本地化字符串。
+        /// </summary>
+        internal static string everything_item_tags_name {
+            get {
+                return ResourceManager.GetString("everything_item_tags_name", resourceCulture);
             }
         }
         

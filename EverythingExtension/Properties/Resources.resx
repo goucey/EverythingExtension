@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="everything_clipboard_failed" xml:space="preserve">
-    <value>🔴 Fail to set text in clipboard</value>
+    <value>🔴 Failed to set to clipboard</value>
   </data>
   <data name="everything_clipboard_success" xml:space="preserve">
-    <value>🟢 Successfully copied to clipboard!</value>
+    <value>🟢 Successfully set to clipboard!</value>
   </data>
   <data name="everything_copied" xml:space="preserve">
     <value>Copied</value>
+  </data>
+  <data name="everything_copy_file" xml:space="preserve">
+    <value>Copy file or folder</value>
   </data>
   <data name="everything_copy_path" xml:space="preserve">
     <value>Copy path</value>
@@ -244,6 +247,9 @@ Use `@` to start with regular search. It should be noted that when regular searc
   </data>
   <data name="everything_is_not_running" xml:space="preserve">
     <value>Everything is not running</value>
+  </data>
+  <data name="everything_item_tags_name" xml:space="preserve">
+    <value>Tags</value>
   </data>
   <data name="everything_macro_enabled" xml:space="preserve">
     <value>Enable macro query</value>

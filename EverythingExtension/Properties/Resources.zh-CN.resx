@@ -118,13 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="everything_clipboard_failed" xml:space="preserve">
-    <value>🔴 无法在剪贴板中设置文本</value>
+    <value>🔴 设置到剪贴板失败！</value>
   </data>
   <data name="everything_clipboard_success" xml:space="preserve">
-    <value>🟢 已成功复制到剪贴板！</value>
+    <value>🟢 已成功设置到剪贴板！</value>
   </data>
   <data name="everything_copied" xml:space="preserve">
     <value>复制</value>
+  </data>
+  <data name="everything_copy_file" xml:space="preserve">
+    <value>复制文件或文件夹</value>
   </data>
   <data name="everything_copy_path" xml:space="preserve">
     <value>复制路径</value>
@@ -244,6 +247,9 @@
   </data>
   <data name="everything_is_not_running" xml:space="preserve">
     <value>Everything 未运行</value>
+  </data>
+  <data name="everything_item_tags_name" xml:space="preserve">
+    <value>分类标签</value>
   </data>
   <data name="everything_macro_enabled" xml:space="preserve">
     <value>启用宏查询</value>

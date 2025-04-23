@@ -1,8 +1,8 @@
 ﻿using EverythingExtension.Properties;
+using EverythingExtension.SDK;
 using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
-
 
 namespace EverythingExtension.Commands
 {
@@ -17,7 +17,7 @@ namespace EverythingExtension.Commands
         {
             _searchResult = searchResult;
             Name = Resources.everything_copy_path;
-            Icon = new IconInfo("\uE8c8");
+            Icon = new IconInfo("\uE71B");
         }
 
         #endregion Internal Constructors
@@ -35,6 +35,7 @@ namespace EverythingExtension.Commands
             try
             {
                 ClipboardHelper.SetText(_searchResult.FullPath); // 🟢🔴
+                _ = EverythingSdk.Everything_IncRunCountFromFileNameW(_searchResult.FullPath);
                 return CommandResult.ShowToast(Resources.everything_clipboard_success);
             }
             catch

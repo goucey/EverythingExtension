@@ -70,11 +70,6 @@ namespace EverythingExtension.Search
         public ResultType Type { get; set; }
 
         /// <summary>
-        /// 扩展名
-        /// </summary>
-        private string? Extension { get; set; }
-
-        /// <summary>
         /// 文件大小
         /// </summary>
         public long? Size { get; init; }
@@ -86,40 +81,35 @@ namespace EverythingExtension.Search
 
         public bool IsPreview => IsTextPreview || IsImagePreview;
 
-        /// <summary>
-        /// 是否是Markdown文件
-        /// </summary>
-        private bool IsMarkdown => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && Extension.Equals(".md", StringComparison.OrdinalIgnoreCase);
-
         public Action? Deleted { get; set; }
 
         /// <summary>
         /// 文本是否可预览
         /// </summary>
-        private bool IsTextPreview
-            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.Equals(Extension, StringComparison.OrdinalIgnoreCase));
+        public bool IsTextPreview
+            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase));
+
+        /// <summary>
+        /// 扩展名
+        /// </summary>
+        public string? Extension { get; set; }
 
         /// <summary>
         /// 图片是否可预览
         /// </summary>
         private bool IsImagePreview
-            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _imageExtension.Any(i => i.Equals(Extension, StringComparison.OrdinalIgnoreCase));
+            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _imageExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase));
+
+        /// <summary>
+        /// 是否是Markdown文件
+        /// </summary>
+        private bool IsMarkdown => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && ".md".EndsWith(Extension, StringComparison.OrdinalIgnoreCase);
 
         #endregion Properties
 
         #region Internal Methods
 
-        internal string? GetContent()
-        {
-            if (!IsTextPreview && !IsImagePreview)
-                return null;
-
-            var content = IsImagePreview ? $"![{FileName}]({FullPath})" : File.ReadAllText(FullPath, Encoding.UTF8);
-
-            return IsMarkdown ? content : ContentFormat(content);
-        }
-
-        private bool IsDirectory()
+        public bool IsDirectory()
         {
             if (!Path.Exists(FullPath))
             {
@@ -130,6 +120,16 @@ namespace EverythingExtension.Search
 
             // detect whether it is a directory or file
             return (attr & FileAttributes.Directory) == FileAttributes.Directory;
+        }
+
+        internal string? GetContent()
+        {
+            if (!IsTextPreview && !IsImagePreview)
+                return null;
+
+            var content = IsImagePreview ? $"![{Guid.NewGuid()}]({FullPath})" : File.ReadAllText(FullPath, Encoding.UTF8);
+
+            return IsMarkdown ? content : ContentFormat(content);
         }
 
         /// <summary>

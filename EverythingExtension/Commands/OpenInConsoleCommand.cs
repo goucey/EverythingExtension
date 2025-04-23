@@ -1,4 +1,5 @@
 ﻿using EverythingExtension.Properties;
+using EverythingExtension.SDK;
 using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -37,7 +38,11 @@ namespace EverythingExtension.Commands
             string? path = _searchResult.GetDirectoryPath();
 
             if (!string.IsNullOrEmpty(path))
+            {
                 _ = LaunchTarget(path).ConfigureAwait(false);
+
+                _ = EverythingSdk.Everything_IncRunCountFromFileNameW(_searchResult.FullPath);
+            }
 
             return CommandResult.Dismiss();
         }

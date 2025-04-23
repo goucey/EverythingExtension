@@ -1,4 +1,5 @@
 ﻿using EverythingExtension.Properties;
+using EverythingExtension.SDK;
 using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -33,6 +34,7 @@ namespace EverythingExtension.Commands
         public override CommandResult Invoke()
         {
             _ = LaunchTarget(_searchResult.FullPath).ConfigureAwait(false);
+            _ = EverythingSdk.Everything_IncRunCountFromFileNameW(_searchResult.FullPath);
             return CommandResult.Hide();
         }
 

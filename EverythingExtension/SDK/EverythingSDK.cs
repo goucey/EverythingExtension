@@ -142,6 +142,9 @@ namespace EverythingExtension.SDK
         [DllImport(DllPath, CharSet = CharSet.Unicode)]
         internal static extern IntPtr Everything_GetResultPathW(int idx);
 
+        [DllImport(DllPath, CharSet = CharSet.Unicode)]
+        internal static extern int Everything_IncRunCountFromFileNameW(string lpFileName);
+
         #region 1.0.0
 
         [MinVersion("1.0.0")]

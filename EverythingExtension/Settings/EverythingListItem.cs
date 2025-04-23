@@ -1,5 +1,6 @@
 ﻿using EverythingExtension.Commands;
 using EverythingExtension.Pages;
+using EverythingExtension.Properties;
 using EverythingExtension.SDK;
 using EverythingExtension.Search;
 
@@ -7,6 +8,8 @@ using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 using Windows.Storage.Streams;
@@ -66,33 +69,52 @@ namespace EverythingExtension.Settings
 
         #region Private Methods
 
-        private static Details? BuildDetails()
+        private Details? BuildDetails()
         {
-            return null;
-            //if (_search.Type != ResultType.File)
-            //    return default;
+            if (_search.Type != ResultType.File || !_search.IsPreview)
+                return default;
 
-            //var metadata = new List<DetailsElement>();
-            //metadata.Add(new DetailsElement() { Key = "Type", Data = new DetailsTags() { Tags = [new Tag(_search.Type.ToString())] } });
+            var metadata = new List<DetailsElement>
+            {
+                new DetailsElement() { Key = _search.FileName, Data = new DetailsLink() { Text = $"🔗 {_search.FullPath}" } },
+            };
 
-            //if (_search.Type != ResultType.Folder)
-            //{
-            //    metadata.Add(new DetailsElement() { Key = "File", Data = new DetailsLink() { Text = _search.FileName } });
-            //    metadata.Add(new DetailsElement() { Key = "Path", Data = new DetailsLink() { Text = _search.FullPath } });
-            //}
+            if (_search.Type != ResultType.Folder)
+            {
+                metadata.Add(new DetailsElement() { Data = new DetailsSeparator() });
+                metadata.Add(new DetailsElement()
+                {
+                    Key = Resources.everything_item_tags_name,
+                    Data = new DetailsTags()
+                    {
+                        Tags = [
+                            new Tag(_search.Extension?? string.Empty),
+                            new Tag(_search.GetFileSizeDisplay() ?? string.Empty)
+                    ]
+                    }
+                });
+                //metadata.Add(new DetailsElement() { Key = _search.FileName, Data = new DetailsLink() { Text = $"🔗 {_search.FullPath}" } });
+            }
 
-            //Details details = new Details()
-            //{
-            //    Title = this.Title,
-            //    HeroImage = this.Icon ?? new IconInfo(string.Empty),
-            //    Metadata = metadata.ToArray(),
-            //};
-            //if (_search.FileName.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    details.Body = File.ReadAllText(_search.FullPath);
-            //}
+            Details details = new Details()
+            {
+                Metadata = [.. metadata],
+            };
 
-            //return details;
+            if (_search.IsPreview)
+            {
+                if (_search.IsTextPreview)
+                {
+                    details.Title = this.Title;
+                }
+                details.Body = _search.GetContent() ?? "";
+            }
+            else
+            {
+                details.Title = string.Empty;
+                details.HeroImage = this.Icon ?? new IconInfo(string.Empty);
+            }
+            return details;
         }
 
         private async Task<IconInfo?> FetchIcon()

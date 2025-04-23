@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EverythingExtension.Search;
 using EverythingExtension.Properties;
 using EverythingExtension.Utils;
+using EverythingExtension.SDK;
 
 namespace EverythingExtension.Commands
 {
@@ -38,7 +39,11 @@ namespace EverythingExtension.Commands
             var parentDir = _searchResult.GetDirectoryPath();
 
             if (!string.IsNullOrEmpty(parentDir))
+            {
                 _ = RunAsAdmin(target, parentDir).ConfigureAwait(false);
+
+                _ = EverythingSdk.Everything_IncRunCountFromFileNameW(_searchResult.FullPath);
+            }
 
             return CommandResult.Dismiss();
         }

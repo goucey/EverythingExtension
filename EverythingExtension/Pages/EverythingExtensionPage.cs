@@ -40,7 +40,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         PlaceholderText = Resources.everything_plugin_description;
 
         _settings = settings;
-
+        ShowDetails = true;
         _everythingSearch = new EverythingSearch(_settings);
         _helpPage = new HelpPage();
         _helpPage.GoBackHomePage += GoBackHomePageHandler;
