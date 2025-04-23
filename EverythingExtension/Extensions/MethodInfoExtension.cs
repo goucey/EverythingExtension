@@ -23,7 +23,6 @@ namespace EverythingExtension.Extensions
             var minVersion = methodInfo.GetCustomAttribute<MinVersionAttribute>();
             if (minVersion == null)
             {
-                Log.Warning("{methodName}:方法信息没有 MinVersion 属性。", "IsVersionAvailable");
                 return true;
             }
 

@@ -27,6 +27,7 @@ namespace EverythingExtension.Pages
             Title = path;
             Name = Resources.everything_folder_browse;
             Icon = new IconInfo("\uec50");
+            ShowDetails = true;
         }
 
         #endregion Public Constructors
@@ -82,10 +83,9 @@ namespace EverythingExtension.Pages
         {
             if (_filteredContents != null)
             {
-                
-                        return _filteredContents.Count > 0
-                            ? _filteredContents.ToArray()
-                            : CreateFolderIsEmptyCommandItem("搜索结果为空");
+                return _filteredContents.Count > 0
+                    ? _filteredContents.ToArray()
+                    : CreateFolderIsEmptyCommandItem("搜索结果为空");
             }
 
             if (_directoryContents != null)

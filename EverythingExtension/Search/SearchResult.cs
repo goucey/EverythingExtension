@@ -38,16 +38,15 @@ namespace EverythingExtension.Search
             FullPath = fullPath;
             Type = IsDirectory() ? ResultType.Folder : ResultType.File;
             if (Type == ResultType.File && !string.IsNullOrWhiteSpace(fileName))
-                Extension = Path.GetExtension(fileName);
+            {
+                Extension = Path.GetExtension(fileName)[1..];
+                Size = new FileInfo(fullPath).Length;
+                ParentPath = Path.GetDirectoryName(fullPath);
+            }
         }
 
-        public SearchResult(string fullPath)
+        public SearchResult(string fullPath) : this(Path.GetFileName(fullPath), fullPath)
         {
-            FileName = Path.GetFileName(fullPath);
-            FullPath = fullPath;
-            Type = IsDirectory() ? ResultType.Folder : ResultType.File;
-            if (Type == ResultType.File && !string.IsNullOrWhiteSpace(FileName))
-                Extension = Path.GetExtension(FileName);
         }
 
         #endregion Public Constructors
