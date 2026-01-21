@@ -262,21 +262,17 @@
     <CsWinRTAotWarningLevel>2</CsWinRTAotWarningLevel>
     <!-- Suppress DynamicallyAccessedMemberTypes.PublicParameterlessConstructor in fallback code path of Windows SDK projection -->
     <WarningsNotAsErrors>IL2081</WarningsNotAsErrors>
-
-    <PublishTrimmed>True</PublishTrimmed>
-    <PublishSingleFile>true</PublishSingleFile>
-    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Auto</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppxBundle>Never</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateThumbprint>06046F5E0DD62F0F2B237A6B195FD3A29440590D</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <AppxPackageDir>E:\EverythingExtension\bin\x64\Release\net9.0-windows10.0.22621.0\win-x64\AppPackages\</AppxPackageDir>
-    <NeutralLanguage>en</NeutralLanguage>
-    <PackageCertificateKeyFile>EverythingExtension_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+
+   
   </PropertyGroup>
 </Project>
