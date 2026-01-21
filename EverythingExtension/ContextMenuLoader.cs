@@ -62,7 +62,7 @@ namespace EverythingExtension
             }
 
             contextMenus.Add(new CommandContextItem(new CopyFileCommand(searchResult)));
-            contextMenus.Add(new CommandContextItem(new CopyPathCommand(searchResult)));
+            contextMenus.Add(new CommandContextItem(new Commands.CopyPathCommand(searchResult)));
             contextMenus.Add(new CommandContextItem(new OpenInConsoleCommand(searchResult)));
             contextMenus.Add(new CommandContextItem(new DeleteCommand(searchResult)));
 

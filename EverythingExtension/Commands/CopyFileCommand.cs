@@ -20,7 +20,7 @@ using Windows.Storage;
 
 namespace EverythingExtension.Commands
 {
-    internal class CopyFileCommand : InvokableCommand
+    internal sealed partial class CopyFileCommand : InvokableCommand
     {
         #region Internal Constructors
 

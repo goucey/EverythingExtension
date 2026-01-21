@@ -38,10 +38,9 @@ namespace EverythingExtension.Settings
 
         #region Public Constructors
 
-        private EverythingSettings()
+        public EverythingSettings() : base()
         {
             FilePath = SettingsJsonPath();
-
             LoadSettings();
 
             Settings.Add(_macroEnabled);
