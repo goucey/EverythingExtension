@@ -5,8 +5,6 @@ using EverythingExtension.Search;
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
-
-
 namespace EverythingExtension.Pages
 {
     internal sealed partial class TextPreviewPage : ContentPage
@@ -44,7 +42,6 @@ namespace EverythingExtension.Pages
             {
                 content = searchResult.GetContent() ?? Resources.everything_text_preview_not_supported;
             }
-
             _mdContent = new MarkdownContent(content);
 
             Commands = [

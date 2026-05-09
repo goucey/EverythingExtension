@@ -1,5 +1,4 @@
-﻿using EverythingExtension.Properties;
-using EverythingExtension.SDK;
+﻿using EverythingExtension.SDK;
 using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -7,16 +6,19 @@ using Microsoft.CommandPalette.Extensions.Toolkit;
 using Serilog;
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using EverythingExtension.Properties;
 
 namespace EverythingExtension.Commands
 {

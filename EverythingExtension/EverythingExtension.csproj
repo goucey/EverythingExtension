@@ -11,9 +11,17 @@
     <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
 
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+	<ProjectPriFileName>EverythingExtension.pri</ProjectPriFileName>
+	  <GeneratePriFiles>true</GeneratePriFiles>
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="新文件夹\**" />
+    <EmbeddedResource Remove="新文件夹\**" />
+    <None Remove="新文件夹\**" />
+    <Page Remove="新文件夹\**" />
+  </ItemGroup>
   <ItemGroup>
     <Content Remove="Assets\Images\Everything.png" />
     <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
@@ -81,13 +89,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <PackageReference Include="UTF.Unknown" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Assets\Everything.png">
@@ -206,12 +208,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -275,4 +271,8 @@
 
    
   </PropertyGroup>
+
+  <ItemGroup>
+    <PRIResource Remove="新文件夹\**" />
+  </ItemGroup>
 </Project>

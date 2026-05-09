@@ -8,6 +8,12 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Web;
+
+using UtfUnknown;
+
+using Windows.Data.Html;
 
 namespace EverythingExtension.Search
 {
@@ -86,12 +92,14 @@ namespace EverythingExtension.Search
         /// 文本是否可预览
         /// </summary>
         public bool IsTextPreview
-            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase));
+            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase)) && Detection!.Detected != null;
 
         /// <summary>
         /// 扩展名
         /// </summary>
         public string? Extension { get; set; }
+
+        internal DetectionResult? Detection => CharsetDetector.DetectFromFile(FullPath);
 
         /// <summary>
         /// 图片是否可预览
@@ -106,7 +114,7 @@ namespace EverythingExtension.Search
 
         #endregion Properties
 
-        #region Internal Methods
+        #region Public Methods
 
         public bool IsDirectory()
         {
@@ -121,12 +129,16 @@ namespace EverythingExtension.Search
             return (attr & FileAttributes.Directory) == FileAttributes.Directory;
         }
 
+        #endregion Public Methods
+
+        #region Internal Methods
+
         internal string? GetContent()
         {
             if (!IsTextPreview && !IsImagePreview)
                 return null;
 
-            var content = IsImagePreview ? $"![{Guid.NewGuid()}]({FullPath})" : File.ReadAllText(FullPath, Encoding.UTF8);
+            var content = IsImagePreview ? $"![{Guid.NewGuid()}]({HttpUtility.UrlEncode(FullPath)})" : ReadFileContent(FullPath);
 
             return IsMarkdown ? content : ContentFormat(content);
         }
@@ -165,6 +177,18 @@ namespace EverythingExtension.Search
         private static string? ContentFormat(string content)
         {
             return string.IsNullOrWhiteSpace(content) ? null : string.Join("\r\n", content.Split(["\r\n", "\n"], StringSplitOptions.TrimEntries));
+        }
+
+        private string ReadFileContent(string filePath)
+        {
+            // 第二个参数 true：自动检测BOM编码（默认就是true，可省略）
+
+            if (Detection == null)
+            {
+                return File.ReadAllText(filePath);
+            }
+            Encoding encoding = Detection.Detected?.Encoding ?? Encoding.UTF8;
+            return File.ReadAllText(filePath, encoding);
         }
 
         #endregion Private Methods

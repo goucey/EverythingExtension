@@ -13,6 +13,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,6 +28,7 @@ public static class Program
     [MTAThread]
     public static async Task Main(string[] args)
     {
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         string path = ApplicationData.GetDefault().TemporaryPath;
         string serilogFileOutputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss} | [{Level:u3}] | {Message:lj}{NewLine}{Exception}{NewLine}";
         string serilogConsoleOutputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}";
@@ -47,8 +49,8 @@ public static class Program
          CultureInfo.InvariantCulture,
          rollingInterval: RollingInterval.Day))
 
-            .WriteTo.Logger(lc => 
-            lc.Filter.ByExcluding(p => 
+            .WriteTo.Logger(lc =>
+            lc.Filter.ByExcluding(p =>
             p.Level == Serilog.Events.LogEventLevel.Error)
             .WriteTo.File(Path.Combine(path, "Logs/Log_.log"),
          Serilog.Events.LogEventLevel.Information,
