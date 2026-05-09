@@ -12,7 +12,7 @@
 	<Identity
 	  Name="Goucey.EverythingExtensionforCommandPalette"
 	  Publisher="CN=BB16CDA0-4304-4CA2-A7C1-F0812CBAA767"
-	  Version="0.0.22.0" />
+	  Version="0.0.23.0" />
 	<!-- When you're ready to publish your extension, you'll need to change the
        Publisher= to match your own identity -->
 
