@@ -151,6 +151,15 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 The search matches multiple items 的本地化字符串。
+        /// </summary>
+        internal static string everything_fallback_multipleResults_subtitle {
+            get {
+                return ResourceManager.GetString("everything_fallback_multipleResults_subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 This file doesn&apos;t exist 的本地化字符串。
         /// </summary>
         internal static string everything_file_does_not_exit {
@@ -165,6 +174,15 @@ namespace EverythingExtension.Properties {
         internal static string everything_file_is_file_not_folder {
             get {
                 return ResourceManager.GetString("everything_file_is_file_not_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Find files or folders 的本地化字符串。
+        /// </summary>
+        internal static string everything_find_fallback_display_title {
+            get {
+                return ResourceManager.GetString("everything_find_fallback_display_title", resourceCulture);
             }
         }
         
@@ -387,6 +405,15 @@ namespace EverythingExtension.Properties {
         internal static string everything_run_as_user {
             get {
                 return ResourceManager.GetString("everything_run_as_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search with Everything &quot;{0}&quot; 的本地化字符串。
+        /// </summary>
+        internal static string everything_search_format {
+            get {
+                return ResourceManager.GetString("everything_search_format", resourceCulture);
             }
         }
         

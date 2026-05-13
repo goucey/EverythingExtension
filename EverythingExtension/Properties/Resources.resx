@@ -147,11 +147,17 @@
   <data name="everything_delete_tips_caption" xml:space="preserve">
     <value>Prompt</value>
   </data>
+  <data name="everything_fallback_multipleResults_subtitle" xml:space="preserve">
+    <value>The search matches multiple items</value>
+  </data>
   <data name="everything_file_does_not_exit" xml:space="preserve">
     <value>This file doesn't exist</value>
   </data>
   <data name="everything_file_is_file_not_folder" xml:space="preserve">
     <value>This is a file, not a folder</value>
+  </data>
+  <data name="everything_find_fallback_display_title" xml:space="preserve">
+    <value>Find files or folders</value>
   </data>
   <data name="everything_folder_browse" xml:space="preserve">
     <value>Browse</value>
@@ -298,6 +304,9 @@ Use `@` to start with regular search. It should be noted that when regular searc
   </data>
   <data name="everything_run_as_user" xml:space="preserve">
     <value>Run as different user</value>
+  </data>
+  <data name="everything_search_format" xml:space="preserve">
+    <value>Search with Everything "{0}"</value>
   </data>
   <data name="everything_subtitle_header" xml:space="preserve">
     <value>Everything</value>

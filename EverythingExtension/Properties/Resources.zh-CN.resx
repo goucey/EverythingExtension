@@ -147,11 +147,17 @@
   <data name="everything_delete_tips_caption" xml:space="preserve">
     <value>提示</value>
   </data>
+  <data name="everything_fallback_multipleResults_subtitle" xml:space="preserve">
+    <value>搜索匹配多个项</value>
+  </data>
   <data name="everything_file_does_not_exit" xml:space="preserve">
     <value>此文件不存在</value>
   </data>
   <data name="everything_file_is_file_not_folder" xml:space="preserve">
     <value>这是一个文件，不是文件夹</value>
+  </data>
+  <data name="everything_find_fallback_display_title" xml:space="preserve">
+    <value>查找文件或文件夹</value>
   </data>
   <data name="everything_folder_browse" xml:space="preserve">
     <value>浏览</value>
@@ -298,6 +304,9 @@
   </data>
   <data name="everything_run_as_user" xml:space="preserve">
     <value>以其他用户身份运行</value>
+  </data>
+  <data name="everything_search_format" xml:space="preserve">
+    <value>使用 Everything 搜索 "{0}"</value>
   </data>
   <data name="everything_subtitle_header" xml:space="preserve">
     <value>Everything</value>
