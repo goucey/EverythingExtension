@@ -10,8 +10,14 @@ namespace EverythingExtension.SDK
     {
         #region Fields
 
+#if ARM64
+        private const string DllPath = "EverythingARM64.dll";
+        private const string DllPath3 = "Everything3_ARM64.dll";
+
+#else
         private const string DllPath = "Everything64.dll";
         private const string DllPath3 = "Everything3_x64.dll";
+#endif
         private const CallingConvention CallConv = CallingConvention.StdCall;
 
         #endregion Fields
