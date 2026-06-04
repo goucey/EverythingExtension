@@ -41,7 +41,10 @@ namespace EverythingExtension
 
             if (searchResult.IsPreview)
             {
-                contextMenus.Add(new CommandContextItem(new TextPreviewPage(searchResult, client)));
+                if (searchResult.IsTextPreview)
+                    contextMenus.Add(new CommandContextItem(new TextPreviewPage(searchResult, client)));
+                else
+                    contextMenus.Add(new CommandContextItem(new ImageViewPage(searchResult)));
             }
 
             if (CanFileBeRunAsAdmin(searchResult.FullPath))

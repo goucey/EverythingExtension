@@ -26,7 +26,7 @@ namespace EverythingExtension.Pages
             //action:()=>{ this.RaiseItemsChanged(); },
             _mdContent = new MarkdownContent(content);
             Commands = [
-                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,result:CommandResult.GoBack())
+                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,result:CommandResult.GoBack()){ Icon = new IconInfo("\ue72b")  }
                 ];
         }
 

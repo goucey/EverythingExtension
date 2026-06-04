@@ -103,11 +103,12 @@ namespace EverythingExtension.Settings
 
             if (_search.IsPreview)
             {
+                details.Title = this.Title;
+
                 if (_search.IsTextPreview)
-                {
-                    details.Title = this.Title;
-                }
-                details.Body = _search.GetContent() ?? "";
+                    details.Body = _search.GetContent() ?? "";
+                else
+                    details.HeroImage = IconHelpers.FromRelativePath(_search.FullPath);
             }
             else
             {

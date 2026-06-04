@@ -21,7 +21,12 @@ namespace EverythingExtension.Internal
     {
         #region Fields
 
-        private readonly string[] _textExtension = [".txt", ".ini", ".log", ".md"];
+        private readonly string[] _textExtension = [ ".txt", ".md", ".markdown", ".ini", ".cfg", ".conf", ".config",
+    ".json", ".xml", ".yaml", ".yml", ".toml", ".properties", ".env",
+    ".cs", ".cshtml", ".js", ".ts", ".jsx", ".tsx", ".html", ".htm", ".css", ".scss", ".less",
+    ".php", ".py", ".java", ".go", ".rb", ".lua", ".sh", ".bat", ".cmd", ".ps1", ".vbs",
+    ".sql", ".log", ".csv", ".tsv", ".diff", ".patch",
+    ".rtf", ".nfo", ".srt", ".ass", ".lrc",".cpp"];
 
         //ani,bmp,gif,ico,jpe,jpeg,jpg,pcx,png,psd,tga,tif,tiff,wmf,wbmp,icl,jp2,mpng,raw,nef,wdp,hdp
         private readonly string[] _imageExtension = [".ani", ".bmp", ".gif", ".ico", ".jpe", ".jpeg", ".jpg", ".pcx", ".png", ".tga", ".tif", ".tiff", ".wmf", ".wbmp", ".icl", ".jp2", ".mpng", ".raw", ".nef", ".wdp", ".hdp", ".svg"];
@@ -187,7 +192,7 @@ namespace EverythingExtension.Internal
             {
                 return File.ReadAllText(filePath);
             }
-            Encoding encoding = Detection.Detected?.Encoding ?? Encoding.UTF8;
+            Encoding encoding = Detection.Detected?.Encoding ?? Encoding.Unicode;
             return File.ReadAllText(filePath, encoding);
         }
 
