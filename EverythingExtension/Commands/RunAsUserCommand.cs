@@ -2,10 +2,10 @@
 
 using System.Diagnostics;
 using System.Threading.Tasks;
-using EverythingExtension.Search;
 using EverythingExtension.Properties;
 using EverythingExtension.Utils;
 using EverythingExtension.SDK;
+using EverythingExtension.Internal;
 
 namespace EverythingExtension.Commands
 {

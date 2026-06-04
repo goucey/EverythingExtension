@@ -2,9 +2,9 @@
 // MIT license. See the LICENSE file in the project root for more information.
 
 using EverythingExtension.Commands;
+using EverythingExtension.Internal;
 using EverythingExtension.Pages;
 using EverythingExtension.SDK;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -33,7 +33,7 @@ namespace EverythingExtension
 
         #region Public Methods
 
-        public static IContextItem[] LoadContextMenus(SearchResult searchResult, bool isFirstLevelFolder = false)
+        public static IContextItem[] LoadContextMenus(IEverythingClient client, SearchResult searchResult, bool isFirstLevelFolder = false)
         {
             List<IContextItem> contextMenus = [];
             // Test to check if File can be Run as admin, if yes, we add a 'run as admin' context
@@ -41,7 +41,7 @@ namespace EverythingExtension
 
             if (searchResult.IsPreview)
             {
-                contextMenus.Add(new CommandContextItem(new TextPreviewPage(searchResult)));
+                contextMenus.Add(new CommandContextItem(new TextPreviewPage(searchResult, client)));
             }
 
             if (CanFileBeRunAsAdmin(searchResult.FullPath))
@@ -57,8 +57,8 @@ namespace EverythingExtension
             else
             {
                 contextMenus.Add(isFirstLevelFolder
-                    ? new CommandContextItem(new OpenCommand(searchResult))
-                    : new CommandContextItem(new DirectoryExplorePage(searchResult.FullPath)));
+                    ? new CommandContextItem(new OpenCommand(searchResult, client))
+                    : new CommandContextItem(new DirectoryExplorePage(searchResult.FullPath, client)));
             }
 
             contextMenus.Add(new CommandContextItem(new CopyFileCommand(searchResult)));

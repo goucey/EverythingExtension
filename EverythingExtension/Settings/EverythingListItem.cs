@@ -1,8 +1,8 @@
 ﻿using EverythingExtension.Commands;
+using EverythingExtension.Internal;
 using EverythingExtension.Pages;
 using EverythingExtension.Properties;
 using EverythingExtension.SDK;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -20,7 +20,7 @@ namespace EverythingExtension.Settings
     {
         #region Public Constructors
 
-        public EverythingListItem(SearchResult search, bool isFirstLevelFolder = false) : base(new NoOpCommand())
+        public EverythingListItem(SearchResult search, IEverythingClient client, bool isFirstLevelFolder = false) : base(new NoOpCommand())
         {
             //new DirectoryExplorePage(search.FullPath)
             Title = search.FileName;
@@ -30,9 +30,9 @@ namespace EverythingExtension.Settings
                 Tags = [new Tag(search.GetFileSizeDisplay() ?? string.Empty)];
 
             if (search.Type == ResultType.Folder)
-                Command = isFirstLevelFolder ? new DirectoryExplorePage(search.FullPath) : new OpenCommand(search);
+                Command = isFirstLevelFolder ? new DirectoryExplorePage(search.FullPath, client) : new OpenCommand(search, client);
             else
-                Command = new OpenCommand(search);
+                Command = new OpenCommand(search, client);
 
             _search = search;
 
@@ -45,7 +45,7 @@ namespace EverythingExtension.Settings
                 return t.Result;
             });
 
-            MoreCommands = [.. ContextMenuLoader.LoadContextMenus(search, isFirstLevelFolder)];
+            MoreCommands = [.. ContextMenuLoader.LoadContextMenus(client, search, isFirstLevelFolder)];
         }
 
         #endregion Public Constructors

@@ -16,12 +16,6 @@
     <Platforms>x64;ARM64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="新文件夹\**" />
-    <EmbeddedResource Remove="新文件夹\**" />
-    <None Remove="新文件夹\**" />
-    <Page Remove="新文件夹\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="Assets\Images\Everything.png" />
   </ItemGroup>
 
@@ -85,6 +79,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Update="Everything3_x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Everything64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -120,10 +117,6 @@
 
    
   </PropertyGroup>
-
-  <ItemGroup>
-    <PRIResource Remove="新文件夹\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

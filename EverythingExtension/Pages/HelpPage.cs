@@ -30,7 +30,7 @@ namespace EverythingExtension.Pages
             Name = Resources.everything_text_preview;
             _mdContent = new MarkdownContent(Resources.everything_help_content);
             Commands = [
-                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,action:()=>GoBackHomePage?.Invoke(this,EventArgs.Empty),result:CommandResult.GoBack())
+                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,action:()=>GoBackHomePage?.Invoke(this,EventArgs.Empty),result:CommandResult.GoBack()){ Icon = new IconInfo("\ue72b") }
                 ];
         }
 

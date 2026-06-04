@@ -1,6 +1,6 @@
-﻿using EverythingExtension.Properties;
+﻿using EverythingExtension.Internal;
+using EverythingExtension.Properties;
 using EverythingExtension.SDK;
-using EverythingExtension.Search;
 using EverythingExtension.Utils;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;

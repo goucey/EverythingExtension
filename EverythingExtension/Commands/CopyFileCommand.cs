@@ -1,5 +1,4 @@
 ﻿using EverythingExtension.SDK;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
@@ -19,6 +18,7 @@ using System.Xml.Linq;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using EverythingExtension.Properties;
+using EverythingExtension.Internal;
 
 namespace EverythingExtension.Commands
 {

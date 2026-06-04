@@ -1,6 +1,6 @@
-﻿using EverythingExtension.Properties;
+﻿using EverythingExtension.Internal;
+using EverythingExtension.Properties;
 using EverythingExtension.SDK;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
@@ -15,16 +15,18 @@ namespace EverythingExtension.Commands
 
         private static readonly IconInfo _theIcon = new("\uE8E5");
         private readonly SearchResult _searchResult;
+        private readonly IEverythingClient _client;
 
         #endregion Fields
 
         #region Public Constructors
 
-        public OpenCommand(SearchResult searchResult)
+        public OpenCommand(SearchResult searchResult, IEverythingClient client)
         {
             Name = Resources.everything_open;
             Icon = _theIcon;
             _searchResult = searchResult;
+            _client = client;
         }
 
         #endregion Public Constructors
@@ -34,7 +36,7 @@ namespace EverythingExtension.Commands
         public override CommandResult Invoke()
         {
             _ = LaunchTarget(_searchResult.FullPath).ConfigureAwait(false);
-            _ = EverythingSdk.Everything_IncRunCountFromFileNameW(_searchResult.FullPath);
+            _ = _client.IncRunCountFromFilename(_searchResult.FullPath);
             return CommandResult.Hide();
         }
 

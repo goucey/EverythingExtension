@@ -55,5 +55,10 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
 
     public override IFallbackCommandItem[]? FallbackCommands() => [_fallback];
 
+    public override void InitializeWithHost(IExtensionHost host)
+    {
+        EverythingExtensionHost.Instance.Initialize(host);
+    }
+
     #endregion Public Methods
 }

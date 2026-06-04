@@ -1,6 +1,6 @@
 ﻿using EverythingExtension.Commands;
+using EverythingExtension.Internal;
 using EverythingExtension.Properties;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -30,7 +30,7 @@ namespace EverythingExtension.Pages
                 ];
         }
 
-        public TextPreviewPage(SearchResult searchResult)
+        public TextPreviewPage(SearchResult searchResult, IEverythingClient client)
         {
             Icon = _theIcon;
             Title = searchResult.FileName;
@@ -46,7 +46,7 @@ namespace EverythingExtension.Pages
 
             Commands = [
                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,result:CommandResult.GoBack()),
-                   new CommandContextItem(new OpenCommand(searchResult))
+                   new CommandContextItem(new OpenCommand(searchResult, client))
                ];
         }
 

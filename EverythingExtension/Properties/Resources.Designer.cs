@@ -247,6 +247,42 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Ignore Punctuation Marks 的本地化字符串。
+        /// </summary>
+        internal static string everything_ignorePunctuation_enabled {
+            get {
+                return ResourceManager.GetString("everything_ignorePunctuation_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Automatically skip all punctuation symbols during keyword parsing and matching. 的本地化字符串。
+        /// </summary>
+        internal static string everything_ignorePunctuation_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_ignorePunctuation_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ignore Whitespace Characters 的本地化字符串。
+        /// </summary>
+        internal static string everything_ignoreWhitespace_enabled {
+            get {
+                return ResourceManager.GetString("everything_ignoreWhitespace_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Ignore spaces, tabs and all other whitespace characters in search terms. 的本地化字符串。
+        /// </summary>
+        internal static string everything_ignoreWhitespace_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_ignoreWhitespace_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Everything is not running 的本地化字符串。
         /// </summary>
         internal static string everything_is_not_running {
@@ -279,6 +315,114 @@ namespace EverythingExtension.Properties {
         internal static string everything_macro_enabled_description {
             get {
                 return ResourceManager.GetString("everything_macro_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Case Sensitive Matching 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchCase_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchCase_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Enable case-sensitive search; uppercase and lowercase letters are treated as distinct characters. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchCase_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchCase_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 [V3]Match Diacritics 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchDiacritics_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchDiacritics_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Distinguish diacritical characters; accented letters won&apos;t match non-accented counterparts. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchDiacritics_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchDiacritics_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Include Path In Search 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchPath_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchPath_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search covers full directory paths; keywords match content within folder locations besides filenames. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchPath_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchPath_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Prefix Only Match 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchPrefix_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchPrefix_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Match search term only as the starting prefix of file names or paths. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchPrefix_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchPrefix_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Suffix Only Match 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchSuffix_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchSuffix_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Match search term only as the trailing suffix of file names or paths. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchSuffix_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchSuffix_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Whole Word Matching 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchWholeWords_enabled {
+            get {
+                return ResourceManager.GetString("everything_matchWholeWords_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Match whole words only, partial substrings inside words will not be matched. 的本地化字符串。
+        /// </summary>
+        internal static string everything_matchWholeWords_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_matchWholeWords_enabled_description", resourceCulture);
             }
         }
         
@@ -391,6 +535,24 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Everything service not detected. Please start Everything manually and try again. 的本地化字符串。
+        /// </summary>
+        internal static string everything_reconnect_fail_message {
+            get {
+                return ResourceManager.GetString("everything_reconnect_fail_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Connected successfully after detection! 的本地化字符串。
+        /// </summary>
+        internal static string everything_reconnect_success_message {
+            get {
+                return ResourceManager.GetString("everything_reconnect_success_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Run as administrator 的本地化字符串。
         /// </summary>
         internal static string everything_run_as_administrator {
@@ -418,6 +580,60 @@ namespace EverythingExtension.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Always Show Folders First 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_always {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_always", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Folders First On Ascending Sort 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_ascending {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_ascending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Folders First On Descending Sort 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_descending {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_descending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Folder Sort Priority Rule 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_enabled {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Configure display priority between folders and files: folders first on ascending/descending sort, always first or always last. 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_enabled_description {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_enabled_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Never Show Folders First 的本地化字符串。
+        /// </summary>
+        internal static string everything_searchFoldersFirst_never {
+            get {
+                return ResourceManager.GetString("everything_searchFoldersFirst_never", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Everything 的本地化字符串。
         /// </summary>
         internal static string everything_subtitle_header {
@@ -441,6 +657,15 @@ namespace EverythingExtension.Properties {
         internal static string everything_text_preview_not_supported {
             get {
                 return ResourceManager.GetString("everything_text_preview_not_supported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  version {0} 的本地化字符串。
+        /// </summary>
+        internal static string everything_version {
+            get {
+                return ResourceManager.GetString("everything_version", resourceCulture);
             }
         }
         

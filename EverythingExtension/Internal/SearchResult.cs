@@ -15,7 +15,7 @@ using UtfUnknown;
 
 using Windows.Data.Html;
 
-namespace EverythingExtension.Search
+namespace EverythingExtension.Internal
 {
     public class SearchResult
     {
@@ -163,9 +163,9 @@ namespace EverythingExtension.Search
             {
                 null => null,
                 < 1024 => $"{Size} B",
-                < 1024 * 1024 => $"{(Size / 1024F):F1} KB",
-                < 1024 * 1024 * 1024 => $"{(Size / (1024F * 1024F)):F1} MB",
-                < 1024L * 1024L * 1024L * 1024L => $"{(Size / (1024F * 1024F * 1024F)):F1} GB",
+                < 1024 * 1024 => $"{Size / 1024F:F1} KB",
+                < 1024 * 1024 * 1024 => $"{Size / (1024F * 1024F):F1} MB",
+                < 1024L * 1024L * 1024L * 1024L => $"{Size / (1024F * 1024F * 1024F):F1} GB",
                 _ => null
             };
         }

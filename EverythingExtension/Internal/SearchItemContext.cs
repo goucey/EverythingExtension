@@ -1,5 +1,5 @@
 ﻿using EverythingExtension.Extensions;
-using EverythingExtension.Search;
+using EverythingExtension.SDK;
 
 using Serilog;
 
@@ -11,20 +11,20 @@ using System.Text;
 
 using static EverythingExtension.SDK.EverythingSdk;
 
-namespace EverythingExtension.SDK
+namespace EverythingExtension.Internal
 {
     internal sealed class SearchItemContext(int index, Version version)
     {
         #region Properties
 
-        public string HighlightedFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFileNameW").GetString();
-        public string HighlightedFullPathAndFileName => Invoke<IntPtr>("Everything_GetResultHighlightedFullPathAndFileNameW").GetString();
+        public string HighlightedFileName => Invoke<nint>("Everything_GetResultHighlightedFileNameW").GetString();
+        public string HighlightedFullPathAndFileName => Invoke<nint>("Everything_GetResultHighlightedFullPathAndFileNameW").GetString();
         private string FullPath => GetFullPath() ?? ConvertHighlightToFullPath();
 
-        private string Path => Invoke<IntPtr>("Everything_GetResultPathW").GetString();
+        private string Path => Invoke<nint>("Everything_GetResultPathW").GetString();
 
-        private string FileName => Invoke<IntPtr>("Everything_GetResultFileNameW").GetString();
-        private string Extension => Invoke<IntPtr>("Everything_GetResultExtensionW").GetString();
+        private string FileName => Invoke<nint>("Everything_GetResultFileNameW").GetString();
+        private string Extension => Invoke<nint>("Everything_GetResultExtensionW").GetString();
 
         private ResultType Type => GetResultType();
 

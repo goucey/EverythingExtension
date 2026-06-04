@@ -1,6 +1,4 @@
 ﻿using EverythingExtension.Properties;
-using EverythingExtension.SDK;
-using EverythingExtension.Search;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 

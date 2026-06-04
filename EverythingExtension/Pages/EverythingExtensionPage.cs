@@ -1,16 +1,20 @@
 // Copyright (c) Microsoft Corporation The Microsoft Corporation licenses this file to you under the
 // MIT license. See the LICENSE file in the project root for more information.
 
+using EverythingExtension.Commands;
 using EverythingExtension.Exceptions;
 using EverythingExtension.Properties;
-using EverythingExtension.Search;
 using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
+using Serilog;
+
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EverythingExtension.Pages;
@@ -23,8 +27,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
     private readonly EverythingSettings _settings;
     private readonly List<IListItem> _results = [];
 
-    private EverythingSearch? _everythingSearch;
-
+    private readonly CompositeFormat versionCompositeFormat = CompositeFormat.Parse(Resources.everything_version);
+    private IEverythingClient? _everythingClient;
     private long _everythingSearchCookie;
 
     #endregion Fields
@@ -41,10 +45,9 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
         _settings = settings;
         ShowDetails = true;
-        _everythingSearch = new EverythingSearch(_settings);
+        EverythingInitialize();
         _helpPage = new HelpPage();
         _helpPage.GoBackHomePage += GoBackHomePageHandler;
-        WelcomeEmptyContentInitialize();
     }
 
     ~EverythingExtensionPage()
@@ -79,9 +82,12 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         {
             _ = Task.Run(() =>
             {
+                IsLoading = true;
                 //await DelayQuery();
                 Query(newSearch);
-                LoadMore();
+                FetchItems(30);
+                IsLoading = false;
+                RaiseItemsChanged(_results.Count);
             });
         }
     }
@@ -100,11 +106,30 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         GC.SuppressFinalize(this);
     }
 
+    internal bool EverythingInitialize()
+    {
+        _everythingClient = EverythingClientProvider.GetClient(_settings);
+
+        if (_everythingClient.Initialize())
+        {
+            EmptyContent = null;
+            WelcomeEmptyContentInitialize();
+            Title = Resources.everything_subtitle_header + string.Format(CultureInfo.InvariantCulture, versionCompositeFormat, _everythingClient.Version);
+            return true;
+        }
+        else
+        {
+            NotRunningEmptyContentInitialize();
+            return false;
+        }
+    }
+
     private void Dispose(bool disposing)
     {
         if (disposing)
         {
-            _everythingSearch = null;
+            _everythingClient?.Dispose();
+            _everythingClient = null;
         }
     }
 
@@ -112,8 +137,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
     {
         _everythingSearchCookie = DateTime.Now.ToFileTime();
         _results.Clear();
-        _everythingSearch?.SearchResults.Clear();
-        _everythingSearch?.Cancel();
+        _everythingClient?.SearchResults.Clear();
+        _everythingClient?.Cancel();
 
         //WelcomeEmptyContentInitialize();
 
@@ -130,15 +155,17 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
         try
         {
-            _everythingSearch?.Execute(query, _everythingSearchCookie);
+            _everythingClient?.EnsureEverythingAvailable();
+            _everythingClient?.Execute(query, _everythingSearchCookie);
+            //_everythingSearch?.Execute(query, _everythingSearchCookie);
         }
         catch (IpcErrorException)
         {
-            EmptyContent = new CommandContextItem(title: Resources.everything_is_not_running)
-            {
-                Icon = IconHelpers.FromRelativePath("Assets\\Images\\Warning.png"),
-                Command = new NoOpCommand()
-            };
+            NotRunningEmptyContentInitialize();
+        }
+        catch (OperationCanceledException ex)
+        {
+            Log.Error(ex, "搜索任务取消");
         }
         catch (Exception e)
         {
@@ -155,21 +182,30 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         EmptyContent = new CommandContextItem(_helpPage)
         {
             Title = Resources.everything_welcome,
-            Subtitle = Resources.everything_welcome_subtitle
+            Subtitle = Resources.everything_welcome_subtitle,
+        };
+    }
+
+    private void NotRunningEmptyContentInitialize()
+    {
+        EmptyContent = new CommandContextItem(title: Resources.everything_is_not_running)
+        {
+            Icon = IconHelpers.FromRelativePath("Assets\\Images\\Warning.png"),
+            Command = new ReconnectEverythingCommand(this)
         };
     }
 
     private void FetchItems(int limit)
     {
-        if (_everythingSearch == null)
+        if (_everythingClient == null)
             return;
 
-        var cookie = _everythingSearch.Cookie;
+        var cookie = _everythingClient.Cookie;
         if (cookie != _everythingSearchCookie)
             return;
 
         var index = 0;
-        while (!_everythingSearch.SearchResults.IsEmpty && _everythingSearch.SearchResults.TryDequeue(out var result) && ++index <= limit)
+        while (!_everythingClient.SearchResults.IsEmpty && _everythingClient.SearchResults.TryDequeue(out var result) && ++index <= limit)
         {
             //IconInfo icon = null;
             //try
@@ -186,7 +222,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
             //    Debug.Write(ex);
             //    //Logger.LogError("Failed to get the icon.", ex);
             //}
-            var item = new EverythingListItem(result);
+            var item = new EverythingListItem(result, _everythingClient);
 
             //_item.Icon = icon;
 
@@ -195,7 +231,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
             _results.Add(item);
         }
 
-        HasMoreItems = !_everythingSearch.SearchResults.IsEmpty;
+        HasMoreItems = !_everythingClient.SearchResults.IsEmpty;
     }
 
     private void DeletedListItemHandler(EverythingListItem item)
@@ -207,8 +243,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
     private void GoBackHomePageHandler(object? sender, EventArgs e)
     {
         _results.Clear();
-        _everythingSearch?.SearchResults.Clear();
-        _everythingSearch?.Cancel();
+        _everythingClient?.SearchResults.Clear();
+        _everythingClient?.Cancel();
         RaiseItemsChanged();
     }
 

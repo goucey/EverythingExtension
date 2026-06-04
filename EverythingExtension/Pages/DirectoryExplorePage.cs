@@ -13,24 +13,33 @@ using System.Xml.Linq;
 using Windows.Storage.Streams;
 using EverythingExtension.Properties;
 using EverythingExtension.Settings;
-using EverythingExtension.Search;
+using EverythingExtension.Internal;
 
 namespace EverythingExtension.Pages
 {
     internal sealed partial class DirectoryExplorePage : DynamicListPage
     {
+        #region Fields
+
+        private IEverythingClient _client;
+
+        #endregion Fields
+
         #region Public Constructors
 
-        public DirectoryExplorePage(string path)
+        public DirectoryExplorePage(string path, IEverythingClient client)
         {
             _path = path;
             Title = path;
             Name = Resources.everything_folder_browse;
             Icon = new IconInfo("\uec50");
             ShowDetails = true;
+            _client = client;
         }
 
         #endregion Public Constructors
+
+
 
         #region Fields
 
@@ -138,7 +147,7 @@ namespace EverythingExtension.Pages
             //var index = 0;
             _directoryContents = [.. contents
                 .Select(s => new SearchResult(s))
-                .Select(i => new EverythingListItem(i,true))];
+                .Select(i => new EverythingListItem(i,_client,true))];
 
             //_ = Task.Run(() =>
             //{
@@ -184,12 +193,12 @@ namespace EverythingExtension.Pages
         private IListItem[] CreateFolderIsEmptyCommandItem(string title)
         {
             SearchResult result = new SearchResult(_path);
-            EverythingListItem listItem = new EverythingListItem(result);
+            EverythingListItem listItem = new EverythingListItem(result, _client);
             EmptyContent = new CommandItem(title: title)
             {
                 Icon = new IconInfo("\uE838"),
                 Command = listItem.Command,
-                MoreCommands = ContextMenuLoader.LoadContextMenus(result)
+                MoreCommands = ContextMenuLoader.LoadContextMenus(_client, result)
             };
 
             return [];
