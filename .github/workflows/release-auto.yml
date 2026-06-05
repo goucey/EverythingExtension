@@ -16,13 +16,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install conventional-changelog-cli
+      - name: Install Node & changelog cli
         uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm install -g conventional-changelog-cli
 
-      - name: Parse tag & summary
+      - name: Resolve current/previous tag & build summary
         run: |
           CUR=${GITHUB_REF#refs/tags/}
           # 按版本排序取上一个tag
@@ -44,7 +44,7 @@ jobs:
           }
           EOF
 
-      - name: Build Changelog
+      - name: Generate release markdown body.md
         run: |
           conventional-changelog \
             --config .github/changelog.config.js \
@@ -54,7 +54,7 @@ jobs:
             -r 1 \
             -o body.md
 
-      - name: Create Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.CUR }}
