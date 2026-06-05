@@ -26,7 +26,7 @@ jobs:
         run: |
           CUR=${GITHUB_REF#refs/tags/}
           # 按版本排序取上一个tag
-          PRE=$(git tag --sort=v:refname | grep -B1 "$CUR" | tail -n1 || true)
+          PRE=$(git tag --sort=v:refname | grep -B1 "$CUR" | head -n1 || true)
           echo "CUR=$CUR" >> $GITHUB_ENV
           echo "PRE=$PRE" >> $GITHUB_ENV
         id: tag_parse
