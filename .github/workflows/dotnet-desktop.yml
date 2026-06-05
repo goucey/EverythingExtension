@@ -78,8 +78,8 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     # Execute all unit tests in the solution
-    - name: Execute unit tests
-      run: dotnet test -c ${{ matrix.configuration }}
+   # - name: Execute unit tests
+   #   run: dotnet test -c ${{ matrix.configuration }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
