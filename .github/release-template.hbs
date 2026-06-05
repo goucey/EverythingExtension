@@ -1,0 +1,15 @@
+# Release {{currentTag}}
+
+
+{{#each commitGroups}}
+## {{title}}
+{{#each commits}}
+- {{subject}}{{#if commit.shortHash}} ({{commit.shortHash}}){{/if}}
+{{/each}}
+{{/each}}
+
+**Full Changelog**: {{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}
+
+## 📦 安装下载
+<a href="https://apps.microsoft.com/detail/9PND4PGFP6KM"><img alt="Microsoft Store" width="240px"
+        src="https://get.microsoft.com/images/en-us%20dark.svg" /></a>

@@ -1,0 +1,64 @@
+name: Auto Generate Release Notes From Commit
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: write
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+jobs:
+  gen_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full git log
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install conventional-changelog-cli
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -g conventional-changelog-cli
+
+      - name: Parse tag & summary
+        run: |
+          CUR=${GITHUB_REF#refs/tags/}
+          # 按版本排序取上一个tag
+          PRE=$(git tag --sort=v:refname | grep -B1 "$CUR" | tail -n1 || true)
+          echo "CUR=$CUR" >> $GITHUB_ENV
+          echo "PRE=$PRE" >> $GITHUB_ENV
+        id: tag_parse
+
+      # 动态生成 ctx.json 模板上下文文件
+      - name: Generate ctx.json
+        run: |
+          cat > config/ctx.json <<EOF
+          {
+            "currentTag": "${{ env.CUR }}",
+            "previousTag": "${{ env.PRE }}",
+            "owner": "${{ github.repository_owner }}",
+            "repository": "${{ github.event.repository.name }}",
+            "host": "https://github.com"
+          }
+          EOF
+
+      - name: Build Changelog
+        run: |
+          conventional-changelog \
+            --config .github/changelog.config.js \
+            -c config/ctx.json \
+            --from ${{ env.PRE }} \
+            --to ${{ env.CUR }} \
+            -r 1 \
+            -o body.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.CUR }}
+          name: ${{ env.CUR }}
+          body_path: body.md
+          draft: false
+          prerelease: false
