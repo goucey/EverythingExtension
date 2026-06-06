@@ -4,6 +4,7 @@
     <RootNamespace>EverythingExtension</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
 	  <NeutralLanguage>en-US</NeutralLanguage>
+	  <SupportedCultures>zh-CN;en-US</SupportedCultures>
     <WindowsSdkPackageVersion>10.0.26100.68-preview</WindowsSdkPackageVersion>
     <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
@@ -152,7 +153,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ApplicationIcon>EverythingExtension.ico</ApplicationIcon>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-	
+    <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
