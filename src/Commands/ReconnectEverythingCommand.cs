@@ -41,15 +41,15 @@ namespace EverythingExtension.Commands
         {
             if (_page.EverythingInitialize())
             {
-                _installBanner.Message = Resources.everything_reconnect_fail_message;
+                _installBanner.Message = Resources.everything_reconnect_success_message;
                 _installBanner.State = MessageState.Success;
                 EverythingExtensionHost.Instance.ShowStatusWithAutoHide(_installBanner, StatusContext.Extension);
-                return CommandResult.GoToPage(new GoToPageArgs { PageId = "" });
+                return CommandResult.GoToPage(new GoToPageArgs { PageId = "goucey.cmdPal.everything" });
             }
             else
             {
                 _installBanner.State = MessageState.Error;
-                _installBanner.Message = Resources.everything_reconnect_success_message;
+                _installBanner.Message = Resources.everything_reconnect_fail_message;
                 EverythingExtensionHost.Instance.ShowStatusWithAutoHide(_installBanner, StatusContext.Extension);
                 return CommandResult.KeepOpen();
             }

@@ -155,7 +155,7 @@ namespace EverythingExtension.Internal
         public bool Initialize()
         {
             int majorVersion = Everything_GetMajorVersion();
-            if (majorVersion == 0)
+            if (majorVersion < 1)
             {
                 return false;
             }
