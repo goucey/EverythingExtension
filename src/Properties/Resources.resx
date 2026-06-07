@@ -384,7 +384,7 @@ Use `@` to start with regular search. It should be noted that when regular searc
     <value>Folder Sort Priority Rule</value>
   </data>
   <data name="everything_searchFoldersFirst_enabled_description" xml:space="preserve">
-    <value>Configure display priority between folders and files: folders first on ascending/descending sort, always first or always last.</value>
+    <value>[V3]Configure display priority between folders and files: folders first on ascending/descending sort, always first or always last.</value>
   </data>
   <data name="everything_searchFoldersFirst_ascending" xml:space="preserve">
     <value>Folders First On Ascending Sort</value>
