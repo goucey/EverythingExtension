@@ -108,6 +108,15 @@ namespace EverythingExtension.Settings
 
         private static string Namespaced(string propertyName) => $"{Namespace}.{propertyName}";
 
+        private static string SettingsJsonPath()
+        {
+            var directory = Utilities.BaseSettingsPath("Microsoft.CmdPal");
+            Directory.CreateDirectory(directory);
+
+            // now, the state is just next to the exe
+            return Path.Combine(directory, "settings.json");
+        }
+
         #endregion Private Methods
 
         #region Public Constructors
@@ -195,15 +204,6 @@ namespace EverythingExtension.Settings
 
                 return result;
             }
-        }
-
-        private static string SettingsJsonPath()
-        {
-            var directory = Utilities.BaseSettingsPath("Microsoft.CmdPal");
-            Directory.CreateDirectory(directory);
-
-            // now, the state is just next to the exe
-            return Path.Combine(directory, "settings.json");
         }
     }
 }
