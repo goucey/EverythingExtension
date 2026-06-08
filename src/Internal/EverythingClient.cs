@@ -5,6 +5,8 @@ using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
+using Serilog;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -157,6 +159,7 @@ namespace EverythingExtension.Internal
             int majorVersion = Everything_GetMajorVersion();
             if (majorVersion < 1)
             {
+                Log.Warning("检测到 Everything1.5 以下版本尚未运行！");
                 return false;
             }
             int minorVersion = Everything_GetMinorVersion();
@@ -176,8 +179,9 @@ namespace EverythingExtension.Internal
 
         public void EnsureEverythingAvailable()
         {
-            _ = Everything_GetMajorVersion();
-            CheckAndThrowExceptionOnError();
+            int majorVersion = Everything_GetMajorVersion();
+            if (majorVersion < 1)
+                CheckAndThrowExceptionOnError();
         }
 
         private static void CheckAndThrowExceptionOnError()

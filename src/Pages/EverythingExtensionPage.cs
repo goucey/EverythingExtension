@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EverythingExtension.Pages;
@@ -45,9 +46,10 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
         _settings = settings;
         ShowDetails = true;
-        EverythingInitialize();
+        _ = EverythingInitializeAsync();
         _helpPage = new HelpPage();
         _helpPage.GoBackHomePage += GoBackHomePageHandler;
+        WelcomeEmptyContentInitialize();
     }
 
     ~EverythingExtensionPage()
@@ -86,8 +88,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
                 //await DelayQuery();
                 Query(newSearch);
                 FetchItems(30);
-                IsLoading = false;
                 RaiseItemsChanged(_results.Count);
+                IsLoading = false;
             });
         }
     }
@@ -96,8 +98,8 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
     {
         IsLoading = true;
         FetchItems(30);
-        IsLoading = false;
         RaiseItemsChanged(_results.Count);
+        IsLoading = false;
     }
 
     public void Dispose()
@@ -108,6 +110,9 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
     internal bool EverythingInitialize()
     {
+        if (_everythingClient != null && _everythingClient.Version != Version.Parse("0.0.0.0"))
+            return true;
+
         _everythingClient = EverythingClientProvider.GetClient(_settings);
 
         if (_everythingClient.Initialize())
@@ -124,6 +129,31 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         }
     }
 
+    private async Task EverythingInitializeAsync()
+    {
+        using CancellationTokenSource _initCts = new();
+        _initCts.CancelAfter(TimeSpan.FromSeconds(60));
+        CancellationToken token = _initCts.Token;
+        try
+        {
+            while (!token.IsCancellationRequested)
+            {
+                if (EverythingInitialize())
+                    return;
+
+                await Task.Delay(TimeSpan.FromSeconds(1), token);
+            }
+        }
+        catch (TaskCanceledException)
+        {
+            Log.Warning("初始化操作已终止（30秒超时）");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "初始化发生异常");
+        }
+    }
+
     private void Dispose(bool disposing)
     {
         if (disposing)
@@ -135,6 +165,10 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
 
     private void Query(string query)
     {
+        if (_everythingClient == null)
+        {
+            EverythingInitialize();
+        }
         _everythingSearchCookie = DateTime.Now.ToFileTime();
         _results.Clear();
         _everythingClient?.SearchResults.Clear();

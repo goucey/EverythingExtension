@@ -59,7 +59,7 @@ public static class Program
          rollingInterval: RollingInterval.Day))
             .CreateLogger();
 
-        Log.Information($"Launched with args: {string.Join(' ', args.ToArray())}");
+        //Log.Information($"Launched with args: {string.Join(' ', args.ToArray())}");
 
         if (args.Length > 0 && args[0] == "-RegisterProcessAsComServer")
         {

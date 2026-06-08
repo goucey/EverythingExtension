@@ -5,6 +5,8 @@ using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 
+using Serilog;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -241,7 +243,7 @@ namespace EverythingExtension.Internal.V3
                 GetVersion();
                 return true;
             }
-
+            Log.Warning("检测到 Everything1.5 版本尚未运行！");
             return false;
         }
 

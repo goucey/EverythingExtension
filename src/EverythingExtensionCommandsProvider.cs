@@ -16,8 +16,8 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
 {
     #region Fields
 
-    private readonly EverythingExtensionPage _page;
     private readonly FallbackEverythingItem _fallback;
+    private readonly EverythingExtensionPage _page;
 
     #endregion Fields
 
