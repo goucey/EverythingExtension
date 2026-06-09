@@ -60,5 +60,5 @@ jobs:
           tag_name: ${{ env.CUR }}
           name: ${{ env.CUR }}
           body_path: body.md
-          draft: false
+          draft: true
           prerelease: false
