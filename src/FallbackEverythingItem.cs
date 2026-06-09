@@ -1,4 +1,5 @@
-﻿using EverythingExtension.Pages;
+﻿using EverythingExtension.Exceptions;
+using EverythingExtension.Pages;
 using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -39,6 +40,8 @@ namespace EverythingExtension
             Title = string.Empty;
             Subtitle = string.Empty;
             Icon = null;
+
+            _page.EverythingInitialize();
 
             if (string.IsNullOrWhiteSpace(query))
             {

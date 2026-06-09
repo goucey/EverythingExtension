@@ -26,7 +26,7 @@ public static class Program
     #region Public Methods
 
     [MTAThread]
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         string path = ApplicationData.GetDefault().TemporaryPath;
@@ -59,11 +59,11 @@ public static class Program
          rollingInterval: RollingInterval.Day))
             .CreateLogger();
 
-        Log.Information($"Launched with args: {string.Join(' ', args.ToArray())}");
+        //Log.Information($"Launched with args: {string.Join(' ', args.ToArray())}");
 
         if (args.Length > 0 && args[0] == "-RegisterProcessAsComServer")
         {
-            await HandleCOMServerActivationAsync();
+            HandleCOMServerActivation();
         }
         else
         {
@@ -75,9 +75,9 @@ public static class Program
 
     #region Private Methods
 
-    private static async Task HandleCOMServerActivationAsync()
+    private static void HandleCOMServerActivation()
     {
-        await using Shmuelie.WinRTServer.ComServer server = new Shmuelie.WinRTServer.ComServer();
+        global::Shmuelie.WinRTServer.ComServer server = new Shmuelie.WinRTServer.ComServer();
         ManualResetEvent extensionDisposedEvent = new(false);
 
         // We are instantiating an extension instance once above, and returning it every time the
@@ -92,6 +92,8 @@ public static class Program
         // This will make the main thread wait until the event is signalled by the extension class.
         // Since we have single instance of the extension object, we exit as soon as it is disposed.
         extensionDisposedEvent.WaitOne();
+        server.Stop();
+        server.UnsafeDispose();
     }
 
     #endregion Private Methods

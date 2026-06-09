@@ -16,8 +16,8 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
 {
     #region Fields
 
-    private readonly EverythingExtensionPage _page;
     private readonly FallbackEverythingItem _fallback;
+    private readonly EverythingExtensionPage _page;
 
     #endregion Fields
 
@@ -27,16 +27,28 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
     {
         DisplayName = Resources.everything_plugin_name;
         Icon = IconHelpers.FromRelativePath("Assets\\Everything.png");
-        Settings = EverythingSettings.Instance.Settings;
         _page = new EverythingExtensionPage(EverythingSettings.Instance);
         _fallback = new FallbackEverythingItem(_page);
         _commands = [
             new CommandItem(_page) {
                 Title = DisplayName,
                 Subtitle = Resources.everything_plugin_description,
-                MoreCommands = [new CommandContextItem(Settings.SettingsPage)],
+                MoreCommands = [new CommandContextItem(GetSettingsPage())],
             },
         ];
+    }
+
+    private ICommand GetSettingsPage()
+    {
+        Settings = EverythingSettings.Instance.Settings;
+
+        if (Settings.SettingsPage is Command settingPage)
+        {
+            settingPage.Name = Resources.everything_plugin_settings;
+            return settingPage;
+        }
+        else
+            return Settings.SettingsPage;
     }
 
     #endregion Public Constructors

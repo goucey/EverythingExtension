@@ -384,7 +384,7 @@
     <value>文件夹优先显示模式</value>
   </data>
   <data name="everything_searchFoldersFirst_enabled_description" xml:space="preserve">
-    <value>配置文件夹与文件的前后排布规则，可选：升序前置、始终靠前、始终靠后、降序前置</value>
+    <value>[V3]配置文件夹与文件的前后排布规则，可选：升序前置、始终靠前、始终靠后、降序前置</value>
   </data>
   <data name="everything_searchFoldersFirst_ascending" xml:space="preserve">
     <value>升序排序时文件夹排在前面</value>
