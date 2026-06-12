@@ -1,5 +1,5 @@
 ﻿using EverythingExtension.Internal;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 using EverythingExtension.SDK;
 using EverythingExtension.Utils;
 

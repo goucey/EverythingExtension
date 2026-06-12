@@ -1,7 +1,7 @@
 ﻿using EverythingExtension.Commands;
 using EverythingExtension.Internal;
 using EverythingExtension.Pages;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 using EverythingExtension.SDK;
 
 using Microsoft.CommandPalette.Extensions;

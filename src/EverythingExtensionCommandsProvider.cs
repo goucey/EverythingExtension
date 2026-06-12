@@ -2,7 +2,7 @@
 // MIT license. See the LICENSE file in the project root for more information.
 
 using EverythingExtension.Pages;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions;

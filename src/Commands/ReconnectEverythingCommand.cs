@@ -1,5 +1,5 @@
 ﻿using EverythingExtension.Pages;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;

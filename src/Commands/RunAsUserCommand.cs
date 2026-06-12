@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 using System.Threading.Tasks;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 using EverythingExtension.Utils;
 using EverythingExtension.SDK;
 using EverythingExtension.Internal;
