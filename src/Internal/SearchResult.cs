@@ -90,7 +90,9 @@ namespace EverythingExtension.Internal
         public string? ParentPath { get; set; }
 
         public bool IsPreview => IsTextPreview || IsImagePreview;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Action? Deleted { get; set; }
 
         /// <summary>
