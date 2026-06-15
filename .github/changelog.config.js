@@ -16,7 +16,7 @@ const types = [
 ];
 module.exports = {
   parserOpts: {
-    headerPattern: /^\s*([✨🐛📖🎨♻️⚡🧪↩️🛠️])?\s*(\w+)?:?\s*(.*)$/,
+    headerPattern: /^\s*([✨🐛📖🎨♻️⚡🧪↩️🛠️])?\s*(\w+)?[:：]?\s*(.*)$/,
     headerCorrespondence: ["emoji", "type", "subject"]
   },
   writerOpts: {

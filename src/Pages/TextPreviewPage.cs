@@ -1,6 +1,6 @@
 ﻿using EverythingExtension.Commands;
 using EverythingExtension.Internal;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -43,7 +43,7 @@ namespace EverythingExtension.Pages
                 content = searchResult.GetContent() ?? Resources.everything_text_preview_not_supported;
             }
             _mdContent = new MarkdownContent(content);
-
+            //PlainTextContent
             Commands = [
                    new CommandContextItem(Resources.everything_go_back,name:Resources.everything_go_back,result:CommandResult.GoBack()),
                    new CommandContextItem(new OpenCommand(searchResult, client))

@@ -1,7 +1,7 @@
 ﻿using CoreWidgetProvider.Widgets.Enums;
 
 using EverythingExtension.Internal;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;

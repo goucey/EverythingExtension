@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using Windows.Storage.Streams;
-using EverythingExtension.Properties;
+using EverythingExtension.Helper;
 using EverythingExtension.Settings;
 using EverythingExtension.Internal;
 
