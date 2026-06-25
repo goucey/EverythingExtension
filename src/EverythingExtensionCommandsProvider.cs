@@ -2,7 +2,7 @@
 // MIT license. See the LICENSE file in the project root for more information.
 
 using EverythingExtension.Pages;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions;
@@ -38,6 +38,7 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
         ];
     }
 
+  
     private ICommand GetSettingsPage()
     {
         Settings = EverythingSettings.Instance.Settings;
@@ -66,6 +67,7 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
     public override ICommandItem[] TopLevelCommands() => _commands;
 
     public override IFallbackCommandItem[]? FallbackCommands() => [_fallback];
+    
 
     public override void InitializeWithHost(IExtensionHost host)
     {

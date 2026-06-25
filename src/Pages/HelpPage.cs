@@ -1,4 +1,4 @@
-﻿using EverythingExtension.Helper;
+﻿using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;

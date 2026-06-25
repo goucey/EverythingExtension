@@ -18,7 +18,7 @@ using System.Xml.Linq;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using EverythingExtension.Internal;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 
 namespace EverythingExtension.Commands
 {

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
@@ -13,7 +13,7 @@
 	<Identity
 	  Name="Goucey.EverythingExtensionforCommandPalette"
 	  Publisher="CN=BB16CDA0-4304-4CA2-A7C1-F0812CBAA767"
-	  Version="0.1.7.0" />
+	  Version="0.1.8.0" />
 	<!-- When you're ready to publish your extension, you'll need to change the
        Publisher= to match your own identity -->
 
@@ -29,9 +29,8 @@
 	</Dependencies>
 
 	<Resources>
-		<Resource Language="zh-CN" />
 		<Resource Language="en" />
-		<Resource Language="en-US" />
+		<Resource Language="zh-CN" />
 	</Resources>
 
 	<Applications>
@@ -81,3 +80,4 @@
 
 	<mp:PhoneIdentity PhoneProductId="6a4842bd-39ec-43af-9ffd-0d35d25baef8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 </Package>
+

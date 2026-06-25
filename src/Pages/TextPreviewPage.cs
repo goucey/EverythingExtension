@@ -1,6 +1,6 @@
 ﻿using EverythingExtension.Commands;
 using EverythingExtension.Internal;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
