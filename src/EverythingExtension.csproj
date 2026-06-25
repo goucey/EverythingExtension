@@ -104,6 +104,12 @@
 			<Link>%(Filename)%(Extension)</Link>
 		</None>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Templates\ImageViewTemplate.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
   <!--<ItemGroup>
     <None Update="Everything3_ARM64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
