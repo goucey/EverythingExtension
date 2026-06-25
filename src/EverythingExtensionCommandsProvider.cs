@@ -38,6 +38,7 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
         ];
     }
 
+  
     private ICommand GetSettingsPage()
     {
         Settings = EverythingSettings.Instance.Settings;
@@ -66,6 +67,7 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
     public override ICommandItem[] TopLevelCommands() => _commands;
 
     public override IFallbackCommandItem[]? FallbackCommands() => [_fallback];
+    
 
     public override void InitializeWithHost(IExtensionHost host)
     {

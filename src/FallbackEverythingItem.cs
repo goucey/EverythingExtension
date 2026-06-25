@@ -33,6 +33,7 @@ namespace EverythingExtension
             Title = string.Empty;
             Subtitle = Resources.everything_fallback_multipleResults_subtitle;
             Icon = IconHelpers.FromRelativePath("Assets\\Everything.png");
+           
         }
 
         public override void UpdateQuery(string query)
@@ -54,6 +55,7 @@ namespace EverythingExtension
             Subtitle = Resources.everything_fallback_multipleResults_subtitle;
             Icon = IconHelpers.FromRelativePath("Assets\\Everything.png");
             Command = _page;
+            OnPropertyChanged(nameof(Title));
         }
 
         #endregion Public Constructors
