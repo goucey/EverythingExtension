@@ -1,6 +1,6 @@
 ﻿using EverythingExtension.Exceptions;
 using EverythingExtension.Pages;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions.Toolkit;
 

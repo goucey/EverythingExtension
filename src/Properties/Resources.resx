@@ -347,6 +347,9 @@ Use `@` to start with regular search. It should be noted that when regular searc
   <data name="everything_query_error" xml:space="preserve">
     <value>Everything query error</value>
   </data>
+  <data name="everything_reconnect" xml:space="preserve">
+    <value>Check reconnect</value>
+  </data>
   <data name="everything_reconnect_fail_message" xml:space="preserve">
     <value>Everything service not detected. Please start Everything manually and try again.</value>
   </data>

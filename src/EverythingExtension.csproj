@@ -3,7 +3,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>EverythingExtension</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	  <NeutralLanguage>en-US</NeutralLanguage>
+	<NeutralLanguage>en</NeutralLanguage>
     <WindowsSdkPackageVersion>10.0.26100.68-preview</WindowsSdkPackageVersion>
     <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
@@ -56,6 +56,23 @@
     <PackageReference Include="UTF.Unknown" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Properties\Resources.zh-CN.Designer.cs">
+      <DependentUpon>Resources.zh-CN.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Content Update="Assets\Everything.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -103,6 +120,21 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>%(Filename)%(Extension)</Link>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.zh-CN.resx">
+	    <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Properties\Resources.en-US.resx">
+	    <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -158,7 +190,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ApplicationIcon>EverythingExtension.ico</ApplicationIcon>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
 	
   </PropertyGroup>
 

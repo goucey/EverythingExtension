@@ -3,7 +3,7 @@
 
 using EverythingExtension.Commands;
 using EverythingExtension.Exceptions;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 using EverythingExtension.Settings;
 
 using Microsoft.CommandPalette.Extensions;

@@ -1,5 +1,5 @@
 ﻿using EverythingExtension.Pages;
-using EverythingExtension.Helper;
+using EverythingExtension.Properties;
 
 using Microsoft.CommandPalette.Extensions;
 using Microsoft.CommandPalette.Extensions.Toolkit;
@@ -22,7 +22,7 @@ namespace EverythingExtension.Commands
         public ReconnectEverythingCommand(EverythingExtensionPage page)
         {
             _page = page;
-            Name = "检测重连";
+            Name = Resources.everything_reconnect;
             Icon = new IconInfo("\ue72c");
         }
 
