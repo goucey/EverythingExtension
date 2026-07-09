@@ -138,6 +138,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Templates\CodeBlockViewTemplate.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Templates\ImageViewTemplate.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
