@@ -36,6 +36,9 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
                 MoreCommands = [new CommandContextItem(GetSettingsPage())],
             },
         ];
+        _bands = [
+            new WrappedDockItem(_page,_page.Name)
+            ];
     }
 
   
@@ -59,7 +62,7 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
     #region Fields
 
     private readonly ICommandItem[] _commands;
-
+    readonly ICommandItem[] _bands ;
     #endregion Fields
 
     #region Public Methods
@@ -67,7 +70,9 @@ public sealed partial class EverythingExtensionCommandsProvider : CommandProvide
     public override ICommandItem[] TopLevelCommands() => _commands;
 
     public override IFallbackCommandItem[]? FallbackCommands() => [_fallback];
-    
+
+    public override ICommandItem[]? GetDockBands() => _bands;
+
 
     public override void InitializeWithHost(IExtensionHost host)
     {
