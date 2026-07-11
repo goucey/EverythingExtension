@@ -1,4 +1,5 @@
 # EverythingExtension
+> 切换语言：[English](./README_en.md)
 
 EverythingExtension 是一个用于 Windows 的命令面板扩展，它允许您通过命令面板快速访问 Everything 数据库中的文件和文件夹。
 

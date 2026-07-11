@@ -1,4 +1,5 @@
 # EverythingExtension
+> Read this in other languages: [¼òÌåÖĞÎÄ](./README.md)
 EverythingExtension is a command palette extension for Windows. It allows you to quickly access files and folders stored in the Everything database via the command palette.
 
 ![1](./doc/PixPin_2025-04-05_08-48-56.png)
