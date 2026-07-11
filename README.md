@@ -1,82 +1,82 @@
-# EverythingExtension
-> ÇÐ»»ÓïÑÔ£º[English](./README_en.md)
+ï»¿# EverythingExtension
+> åˆ‡æ¢è¯­è¨€ï¼š[English](./README_en.md)
 
-EverythingExtension ÊÇÒ»¸öÓÃÓÚ Windows µÄÃüÁîÃæ°åÀ©Õ¹£¬ËüÔÊÐíÄúÍ¨¹ýÃüÁîÃæ°å¿ìËÙ·ÃÎÊ Everything Êý¾Ý¿âÖÐµÄÎÄ¼þºÍÎÄ¼þ¼Ð¡£
+EverythingExtension æ˜¯ä¸€ä¸ªç”¨äºŽ Windows çš„å‘½ä»¤é¢æ¿æ‰©å±•ï¼Œå®ƒå…è®¸æ‚¨é€šè¿‡å‘½ä»¤é¢æ¿å¿«é€Ÿè®¿é—® Everything æ•°æ®åº“ä¸­çš„æ–‡ä»¶å’Œæ–‡ä»¶å¤¹ã€‚
 
 ![1](./doc/PixPin_2025-04-05_08-48-56.png)
 
-## Ê¹ÓÃ·½·¨
-1. ÊäÈë `Everything`£¨»òÑ¡Ôñ `Everything ËÑË÷`£©ÒÔ´ò¿ª Everything ÃüÁîÃæ°å¡£
-2. ÔÚÃüÁîÃæ°åÖÐÊäÈë `ËÑË÷¹Ø¼ü×Ö` ½øÐÐËÑË÷¡£
-3. ÔÚËÑË÷½á¹ûÖÐ£¬Ñ¡ÔñÒª´ò¿ªµÄÎÄ¼þ»òÎÄ¼þ¼Ð£¬°´ Enter ¼ü½øÐÐ´ò¿ª¡£
-4. Äú»¹¿ÉÒÔÊ¹ÓÃÆäËû¿ì½Ý¼üºÍ¹¦ÄÜ(Ctrl+K)À´²Ù×÷ËÑË÷½á¹û¡£
-5. ËÑË÷ÖÐ¿ÉÒÔÊ¹ÓÃÄÚÖÃ `ºê` £¨ÉèÖÃÖÐÐèÒª¿ªÆôºêËÑË÷£©¾ßÓÐÕë¶ÔÐÔµÄËÑË÷£¬ÀýÈç£º`doc:¡¢audio:¡¢zip:¡¢pic:¡¢video:¡¢web:¡¢exe:`µÈ¡£
+## ä½¿ç”¨æ–¹æ³•
+1. è¾“å…¥ `Everything`ï¼ˆæˆ–é€‰æ‹© `Everything æœç´¢`ï¼‰ä»¥æ‰“å¼€ Everything å‘½ä»¤é¢æ¿ã€‚
+2. åœ¨å‘½ä»¤é¢æ¿ä¸­è¾“å…¥ `æœç´¢å…³é”®å­—` è¿›è¡Œæœç´¢ã€‚
+3. åœ¨æœç´¢ç»“æžœä¸­ï¼Œé€‰æ‹©è¦æ‰“å¼€çš„æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹ï¼ŒæŒ‰ Enter é”®è¿›è¡Œæ‰“å¼€ã€‚
+4. æ‚¨è¿˜å¯ä»¥ä½¿ç”¨å…¶ä»–å¿«æ·é”®å’ŒåŠŸèƒ½(Ctrl+K)æ¥æ“ä½œæœç´¢ç»“æžœã€‚
+5. æœç´¢ä¸­å¯ä»¥ä½¿ç”¨å†…ç½® `å®` ï¼ˆè®¾ç½®ä¸­éœ€è¦å¼€å¯å®æœç´¢ï¼‰å…·æœ‰é’ˆå¯¹æ€§çš„æœç´¢ï¼Œä¾‹å¦‚ï¼š`doc:ã€audio:ã€zip:ã€pic:ã€video:ã€web:ã€exe:`ç­‰ã€‚
 
-## `ºê` ËÑË÷ËµÃ÷£¨Ö§³ÖµÄÎÄ¼þÀàÐÍ£©
-- `doc:`£ºËÑË÷ÎÄµµÎÄ¼þ£¬Èç .doc¡¢.docx¡¢.pdf µÈ¡£
+## `å®` æœç´¢è¯´æ˜Žï¼ˆæ”¯æŒçš„æ–‡ä»¶ç±»åž‹ï¼‰
+- `doc:`ï¼šæœç´¢æ–‡æ¡£æ–‡ä»¶ï¼Œå¦‚ .docã€.docxã€.pdf ç­‰ã€‚
   > asm,c,cc,chm,cpp,csv,cxx,doc,docm,docx,dot,dotm,dotx,efu,epub,h,hpp,htm,html,hxx,ini,java,js,json,lua,md,mht,mhtml,mobi,odp,ods,odt,ofd,pdf,php,pl,potm,potx,ppam,pps,ppsm,ppsx,ppt,pptm,pptx,ps1xml,pssc,pub,py,rtf,sldm,sldx,sql,tsv,txt,vb,vsd,wpd,wps,wri,xlam,xls,xlsb,xlsm,xlsx,xltm,xltx,xml,xsl
 
-- `audio:`£ºËÑË÷ÒôÆµÎÄ¼þ£¬Èç .mp3¡¢.wav¡¢.flac µÈ¡£
+- `audio:`ï¼šæœç´¢éŸ³é¢‘æ–‡ä»¶ï¼Œå¦‚ .mp3ã€.wavã€.flac ç­‰ã€‚
   > aac,ac3,adt,adts,aif,aifc,aiff,amr,ape,au,cda,dts,ec3,fla,flac,it,lpcm,m1a,m2a,m3u,m3u8,m4a,m4b,m4p,mid,midi,mka,mod,mp2,mp3,mpa,mpc,oga,ogg,opus,ra,rmi,snd,spc,umx,voc,wav,wax,weba,wma,xm
 
-- `zip:`£ºËÑË÷Ñ¹ËõÎÄ¼þ£¬Èç .zip¡¢.rar¡¢.7z µÈ¡£
+- `zip:`ï¼šæœç´¢åŽ‹ç¼©æ–‡ä»¶ï¼Œå¦‚ .zipã€.rarã€.7z ç­‰ã€‚
   > 7z,ace,arj,bz2,cab,gz,gzip,jar,r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,rar,tar,tgz,z,zip
 
-- `pic:`£ºËÑË÷Í¼Æ¬ÎÄ¼þ£¬Èç .jpg¡¢.png¡¢.gif µÈ¡£
+- `pic:`ï¼šæœç´¢å›¾ç‰‡æ–‡ä»¶ï¼Œå¦‚ .jpgã€.pngã€.gif ç­‰ã€‚
   > ani,apng,avif,avifs,bmp,bpg,cur,dds,gif,heic,heics,heif,heifs,hif,ico,jfi,jfif,jif,jpe,jpeg,jpg,jxl,jxr,pcx,png,psb,psd,svg,tga,tif,tiff,wdp,webp,wmf,wbmp,icl,jp2,mpng,raw,nef,hdp
 
-- `video:`£ºËÑË÷ÊÓÆµÎÄ¼þ£¬Èç .mp4¡¢.avi¡¢.mkv µÈ¡£
+- `video:`ï¼šæœç´¢è§†é¢‘æ–‡ä»¶ï¼Œå¦‚ .mp4ã€.aviã€.mkv ç­‰ã€‚
   > 3g2,3gp,3gp2,3gpp,amr,amv,asf,asx,avi,bdmv,bik,d2v,divx,drc,dsa,dsm,dss,dsv,evo,f4v,flc,fli,flic,flv,hdmov,ifo,ivf,m1v,m2p,m2t,m2ts,m2v,m4v,mkv,mod,mov,mp2v,mp4,mp4v,mpe,mpeg,mpg,mpls,mpv2,mpv4,mts,ogm,ogv,ogx,pss,pva,qt,ram,ratdvd,rm,rmm,rmvb,roq,rpm,smil,smk,swf,tod,tp,tpr,ts,tts,uvu,vob,vp6,webm,wm,wmp,wmv,wmx,wvx
 
-- `web:`£ºËÑË÷ÍøÒ³ÎÄ¼þ£¬Èç .html¡¢.htm¡¢.php µÈ¡£
+- `web:`ï¼šæœç´¢ç½‘é¡µæ–‡ä»¶ï¼Œå¦‚ .htmlã€.htmã€.php ç­‰ã€‚
   > html,htm,css,js,svg,json,xml,scss,sass,less,styl,ts,mjs,vue,tsx,jsx
 
-- `exe:`£ºËÑË÷¿ÉÖ´ÐÐÎÄ¼þ£¬Èç .exe¡¢.msi¡¢.bat µÈ¡£
+- `exe:`ï¼šæœç´¢å¯æ‰§è¡Œæ–‡ä»¶ï¼Œå¦‚ .exeã€.msiã€.bat ç­‰ã€‚
   > bat,cmd,exe,msi,msp,msu,ps1,scr,msix,vbs
 
-- `font:`£ºËÑË÷×ÖÌåÎÄ¼þ£¬Èç .ttf¡¢.otf µÈ¡£
+- `font:`ï¼šæœç´¢å­—ä½“æ–‡ä»¶ï¼Œå¦‚ .ttfã€.otf ç­‰ã€‚
   > ttf,otf,woff,woff2,ttc,ttf
 
-## ËÑË÷²ÎÊý
-- ³£¹æËÑË÷
-  > ÊäÈë¹Ø¼ü´Ê¼´¿ÉËÑË÷
+## æœç´¢å‚æ•°
+- å¸¸è§„æœç´¢
+  > è¾“å…¥å…³é”®è¯å³å¯æœç´¢
 
-- ºêËÑË÷
-  > ºê±ê¼Ç:ËÑË÷¹Ø¼ü´Ê
+- å®æœç´¢
+  > å®æ ‡è®°:æœç´¢å…³é”®è¯
 
-  ÀýÈç:
+  ä¾‹å¦‚:
 
   ```
   pic:1212
   ```
 
-- ×Ô¶¨ÒåËÑË÷½á¹ûÊýÁ¿£¨ÊýÁ¿×î´óÈ¡Öµ100£¬³¬¹ý100»áµ¼ÖÂ±À»Ù£©
-  > ÓÃÓÚ×Ô¶¨Òå·µ»ØËÑË÷½á¹û£»ËÑË÷¹æÔò£ºËÑË÷¹Ø¼ü´Ê count:ÊýÁ¿£»
+- è‡ªå®šä¹‰æœç´¢ç»“æžœæ•°é‡ï¼ˆæ•°é‡æœ€å¤§å–å€¼100ï¼Œè¶…è¿‡100ä¼šå¯¼è‡´å´©æ¯ï¼‰
+  > ç”¨äºŽè‡ªå®šä¹‰è¿”å›žæœç´¢ç»“æžœï¼›æœç´¢è§„åˆ™ï¼šæœç´¢å…³é”®è¯ count:æ•°é‡ï¼›
 
-  ÀýÈç£º
+  ä¾‹å¦‚ï¼š
   ```
   hello count:10
   ```
 
-- ¿ªÆôÕýÔòËÑË÷
-   ÓÃ `@` ¿ªÍ·ÔòÆôÓÃÕýÔòËÑË÷£¬ÐèÒª×¢ÒâµÄÊÇ£¬ÆôÓÃÕýÔòËÑË÷Ê±£¬ÎÞ·¨ÆôÓÃ`ºê`ËÑË÷ ºÍ `×Ô¶¨Òå·µ»Ø½á¹ûÊýÁ¿`
+- å¼€å¯æ­£åˆ™æœç´¢
+   ç”¨ `@` å¼€å¤´åˆ™å¯ç”¨æ­£åˆ™æœç´¢ï¼Œéœ€è¦æ³¨æ„çš„æ˜¯ï¼Œå¯ç”¨æ­£åˆ™æœç´¢æ—¶ï¼Œæ— æ³•å¯ç”¨`å®`æœç´¢ å’Œ `è‡ªå®šä¹‰è¿”å›žç»“æžœæ•°é‡`
 
-## ? °²×°ÏÂÔØ
+## ? å®‰è£…ä¸‹è½½
 <a href="https://get.microsoft.com/installer/download/9pnd4pgfp6km?referrer=appbadge" target="_self" >
 	<img src="https://get.microsoft.com/images/zh-cn%20dark.svg" width="200"/>
 </a>
 
-### ³£¹æËÑË÷
+### å¸¸è§„æœç´¢
 ![1](./doc/PixPin_2025-04-05_08-49-25.png)
 
-### ºêËÑË÷
+### å®æœç´¢
 ![1](./doc/PixPin_2025-04-05_08-51-36.png)
 
-### ºêËÑË÷´ø×Ô¶¨Òå·µ»ØÊýÁ¿
+### å®æœç´¢å¸¦è‡ªå®šä¹‰è¿”å›žæ•°é‡
 ![1](./doc/PixPin_2025-04-05_08-52-28.png)
 
-### ÕýÔòËÑË÷
+### æ­£åˆ™æœç´¢
 ![1](./doc/PixPin_2025-04-05_08-54-57.png)
 
-### ÕýÔòËÑË÷´ø×Ô¶¨Òå·µ»ØÊýÁ¿
+### æ­£åˆ™æœç´¢å¸¦è‡ªå®šä¹‰è¿”å›žæ•°é‡
 ![1](./doc/PixPin_2025-04-05_08-53-59.png)
