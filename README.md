@@ -13,25 +13,28 @@ EverythingExtension ÊÇÒ»¸öÓÃÓÚ Windows µÄÃüÁîÃæ°åÀ©Õ¹£¬ËüÔÊÐíÄúÍ¨¹ýÃüÁîÃæ°å¿ìËÙ·
 
 ## `ºê` ËÑË÷ËµÃ÷£¨Ö§³ÖµÄÎÄ¼þÀàÐÍ£©
 - `doc:`£ºËÑË÷ÎÄµµÎÄ¼þ£¬Èç .doc¡¢.docx¡¢.pdf µÈ¡£
-  > c,chm,cpp,doc,dot,h,htm,html,mht,mhtml,nfo,pdf,pps,ppt,rtf,txt,vsd,wpd,wps,wri,xls,xml,txt,docx,htm,html,pdf,c,cpp,h,xls,odp,odt,ods,pptx,xlsx,csv,docx,ppsx,java,hpp,ini,dotx,xlsb
+  > asm,c,cc,chm,cpp,csv,cxx,doc,docm,docx,dot,dotm,dotx,efu,epub,h,hpp,htm,html,hxx,ini,java,js,json,lua,md,mht,mhtml,mobi,odp,ods,odt,ofd,pdf,php,pl,potm,potx,ppam,pps,ppsm,ppsx,ppt,pptm,pptx,ps1xml,pssc,pub,py,rtf,sldm,sldx,sql,tsv,txt,vb,vsd,wpd,wps,wri,xlam,xls,xlsb,xlsm,xlsx,xltm,xltx,xml,xsl
 
 - `audio:`£ºËÑË÷ÒôÆµÎÄ¼þ£¬Èç .mp3¡¢.wav¡¢.flac µÈ¡£
-  > aac,ac3,aif,aifc,aiff,au,cda,dts,fla,flac,gym,it,m1a,m2a,m4a,midi,mka,mod,mp2,mp3,mpa,ogg,ra,spc,rmi,snd,umx,vgm,vgz,voc,wav,wma,xm
+  > aac,ac3,adt,adts,aif,aifc,aiff,amr,ape,au,cda,dts,ec3,fla,flac,it,lpcm,m1a,m2a,m3u,m3u8,m4a,m4b,m4p,mid,midi,mka,mod,mp2,mp3,mpa,mpc,oga,ogg,opus,ra,rmi,snd,spc,umx,voc,wav,wax,weba,wma,xm
 
 - `zip:`£ºËÑË÷Ñ¹ËõÎÄ¼þ£¬Èç .zip¡¢.rar¡¢.7z µÈ¡£
-  > ace,arj,bz2,cab,gz,gzip,r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,rar,tar,7z£¬zip
+  > 7z,ace,arj,bz2,cab,gz,gzip,jar,r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,rar,tar,tgz,z,zip
 
 - `pic:`£ºËÑË÷Í¼Æ¬ÎÄ¼þ£¬Èç .jpg¡¢.png¡¢.gif µÈ¡£
-  > ani,bmp,gif,ico,jpe,jpeg,jpg,pcx,png,psd,tga,tif,tiff,wmf,wbmp,icl,jp2,mpng,raw,nef,wdp,hdp
+  > ani,apng,avif,avifs,bmp,bpg,cur,dds,gif,heic,heics,heif,heifs,hif,ico,jfi,jfif,jif,jpe,jpeg,jpg,jxl,jxr,pcx,png,psb,psd,svg,tga,tif,tiff,wdp,webp,wmf,wbmp,icl,jp2,mpng,raw,nef,hdp
 
 - `video:`£ºËÑË÷ÊÓÆµÎÄ¼þ£¬Èç .mp4¡¢.avi¡¢.mkv µÈ¡£
-  > 3g2,3gp,3gp2,3gpp,amr,asf,avi,bik,d2v,dat,divx,drc,dsa,dsm,dss,dsv,flc,fli,flic,flv,ifo,ivf,m1v,m2v,m4b,m4p,m4v,mkv,mp2v,mp4,mpe,mpeg,mpg,mpv2,mov,ogm,pss,pva,qt,ram,ratdvd,rm,rmm,roq,rpm,smk,swf,tp,tpr,ts,vob,vp6,wm,wmp,wmv,rmvb
+  > 3g2,3gp,3gp2,3gpp,amr,amv,asf,asx,avi,bdmv,bik,d2v,divx,drc,dsa,dsm,dss,dsv,evo,f4v,flc,fli,flic,flv,hdmov,ifo,ivf,m1v,m2p,m2t,m2ts,m2v,m4v,mkv,mod,mov,mp2v,mp4,mp4v,mpe,mpeg,mpg,mpls,mpv2,mpv4,mts,ogm,ogv,ogx,pss,pva,qt,ram,ratdvd,rm,rmm,rmvb,roq,rpm,smil,smk,swf,tod,tp,tpr,ts,tts,uvu,vob,vp6,webm,wm,wmp,wmv,wmx,wvx
 
 - `web:`£ºËÑË÷ÍøÒ³ÎÄ¼þ£¬Èç .html¡¢.htm¡¢.php µÈ¡£
-  > html,htm,mht,php,css,sql,js
+  > html,htm,css,js,svg,json,xml,scss,sass,less,styl,ts,mjs,vue,tsx,jsx
 
 - `exe:`£ºËÑË÷¿ÉÖ´ÐÐÎÄ¼þ£¬Èç .exe¡¢.msi¡¢.bat µÈ¡£
-  > exe,cmd,msi,msix
+  > bat,cmd,exe,msi,msp,msu,ps1,scr,msix,vbs
+
+- `font:`£ºËÑË÷×ÖÌåÎÄ¼þ£¬Èç .ttf¡¢.otf µÈ¡£
+  > ttf,otf,woff,woff2,ttc,ttf
 
 ## ËÑË÷²ÎÊý
 - ³£¹æËÑË÷
@@ -55,7 +58,7 @@ EverythingExtension ÊÇÒ»¸öÓÃÓÚ Windows µÄÃüÁîÃæ°åÀ©Õ¹£¬ËüÔÊÐíÄúÍ¨¹ýÃüÁîÃæ°å¿ìËÙ·
   ```
 
 - ¿ªÆôÕýÔòËÑË÷
-   ÓÃ `@` ¿ªÍ·ÔòÆôÓÃÕýÔòËÑË÷£¬ÐèÒª×¢ÒâµÄÊÇ£¬ÆôÓÃÕýÔòËÑË÷Ê±£¬ÎÞ·¨ÆôÓÃ`ºê`ËÑË÷ ºÍ `×Ô¶¨Òå·µ»Ø½á¹ûÊýÁ¿¹«¸æ`
+   ÓÃ `@` ¿ªÍ·ÔòÆôÓÃÕýÔòËÑË÷£¬ÐèÒª×¢ÒâµÄÊÇ£¬ÆôÓÃÕýÔòËÑË÷Ê±£¬ÎÞ·¨ÆôÓÃ`ºê`ËÑË÷ ºÍ `×Ô¶¨Òå·µ»Ø½á¹ûÊýÁ¿`
 
 ## ? °²×°ÏÂÔØ
 <a href="https://get.microsoft.com/installer/download/9pnd4pgfp6km?referrer=appbadge" target="_self" >
