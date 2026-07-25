@@ -63,7 +63,7 @@ namespace EverythingExtension.Pages
                 content = searchResult.GetContent() ?? Resources.everything_text_preview_not_supported;
             }
 
-            if(searchResult.FileName.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
+            if (searchResult.FileName.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
             {
                 _content = new MarkdownContent(content);
             }

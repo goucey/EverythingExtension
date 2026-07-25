@@ -53,6 +53,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ToolGood.Words.Pinyin" />
     <PackageReference Include="UTF.Unknown" />
   </ItemGroup>
   <ItemGroup>

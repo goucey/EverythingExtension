@@ -195,6 +195,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         }
         catch (IpcErrorException)
         {
+            _everythingClient?.Cancel();
             NotRunningEmptyContentInitialize();
         }
         catch (OperationCanceledException ex)
@@ -203,6 +204,7 @@ internal sealed partial class EverythingExtensionPage : DynamicListPage, IDispos
         }
         catch (Exception e)
         {
+            _everythingClient?.Cancel();
             EmptyContent = new CommandContextItem(title: Resources.everything_query_error, subtitle: e.Message)
             {
                 Icon = IconHelpers.FromRelativePath("Assets\\Images\\Error.png"),

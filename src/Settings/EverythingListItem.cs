@@ -76,7 +76,8 @@ namespace EverythingExtension.Settings
 
             var metadata = new List<DetailsElement>
             {
-                new DetailsElement() { Key = _search.FileName, Data = new DetailsLink() { Text = $"🔗 {_search.FullPath}" } },
+                new DetailsElement() { Data = new DetailsSeparator() },
+                new DetailsElement() { Key = "🔗", Data = new DetailsLink() { Text = _search.FullPath } },
             };
 
             if (_search.Type != ResultType.Folder)
