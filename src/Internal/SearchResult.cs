@@ -99,14 +99,14 @@ namespace EverythingExtension.Internal
         /// 文本是否可预览
         /// </summary>
         public bool IsTextPreview
-            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase)) && Detection!.Detected != null;
+            => Type == ResultType.File && !string.IsNullOrWhiteSpace(Extension) && _textExtension.Any(i => i.EndsWith(Extension, StringComparison.OrdinalIgnoreCase)) && Detection?.Detected != null;
 
         /// <summary>
         /// 扩展名
         /// </summary>
         public string? Extension { get; set; }
 
-        internal DetectionResult? Detection => CharsetDetector.DetectFromFile(FullPath);
+        internal DetectionResult? Detection => File.Exists(FullPath) ? CharsetDetector.DetectFromFile(FullPath) : null;
 
         /// <summary>
         /// 图片是否可预览

@@ -46,13 +46,14 @@
     <PackageReference Include="Serilog.Sinks.Console" />
     <PackageReference Include="Serilog.Sinks.File" />
     <PackageReference Include="System.Drawing.Common" />
-    <PackageReference Include="System.Text.Json" />
+    <!--<PackageReference Include="System.Text.Json" />-->
     <PackageReference Include="Shmuelie.WinRTServer" />
    <!-- Needed to enable building an MSIX package -->
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ToolGood.Words.Pinyin" />
     <PackageReference Include="UTF.Unknown" />
   </ItemGroup>
   <ItemGroup>

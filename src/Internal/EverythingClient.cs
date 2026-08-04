@@ -223,7 +223,7 @@ namespace EverythingExtension.Internal
 
             CheckAndThrowExceptionOnError();
 
-            Match match = Regex.Match(keyword, @"(count:(?<count>\d+))", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            Match match = CountRegex().Match(keyword);
             if (match.Success)
             {
                 maxCount = int.Parse(match.Groups["count"].Value, CultureInfo.DefaultThreadCurrentCulture);
@@ -266,6 +266,9 @@ namespace EverythingExtension.Internal
 
             methodInfo.Invoke(null, [RequestFlag.FileName | RequestFlag.Path | RequestFlag.FullPathAndFileName | RequestFlag.HighlightedFileName | RequestFlag.HighlightedFullPathAndFileName | RequestFlag.Size | RequestFlag.Extension]);
         }
+
+        [GeneratedRegex(@"(count:(?<count>\d+))", RegexOptions.IgnoreCase | RegexOptions.Compiled, "zh-CN")]
+        private static partial Regex CountRegex();
 
         #endregion Private Methods
     }
