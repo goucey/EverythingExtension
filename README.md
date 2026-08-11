@@ -2,7 +2,8 @@
 > 切换语言：[English](./README_en.md)
 
 EverythingExtension 是一个用于 Windows 的命令面板扩展，它允许您通过命令面板快速访问 Everything 数据库中的文件和文件夹。
-[![Build Status](https://git.okmn.cc/goucey/EverythingExtension/actions/workflows/ci.yml/badge.svg)](https://git.okmn.cc/goucey/EverythingExtension/actions/workflows/ci.yml)
+
+[![Build Status](https://git.okmn.cc/goucey/EverythingExtension/actions/workflows/release-auto.yml/badge.svg)](https://git.okmn.cc/goucey/EverythingExtension/actions/workflows/release-auto.yml)
 
 ![1](./doc/PixPin_2025-04-05_08-48-56.png)
 
