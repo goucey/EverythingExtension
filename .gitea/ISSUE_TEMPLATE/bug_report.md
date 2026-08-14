@@ -1,3 +1,11 @@
+---
+name: 🐛 Bug 缺陷反馈
+about: 程序异常、崩溃、逻辑错误
+title: "[BUG] "
+labels:
+  - bug
+assignees: []
+---
 ## 🐛 缺陷描述
 清晰描述出现什么异常。
 

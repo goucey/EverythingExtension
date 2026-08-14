@@ -1,3 +1,11 @@
+---
+name: ❓ 咨询与讨论
+about: 使用疑问、技术交流、非缺陷类讨论
+title: "[QUESTION] "
+labels:
+  - question
+assignees: []
+---
 ## ❓ 咨询主题
 
 ## 问题描述

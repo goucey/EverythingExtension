@@ -1,3 +1,11 @@
+---
+name: ✨ 新功能需求
+about: 提出新增功能、能力扩展
+title: "[FEATURE] "
+labels:
+  - feature
+assignees: []
+---
 ## ✨ 需求简述
 一句话说明想要增加什么能力。
 
